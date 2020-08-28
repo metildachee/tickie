@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     },
     type: {
       type: String, 
-      enum: ['client', 'agent', 'admin'],
+      enum: ['Client', 'Agent', 'Admin'],
       required: true
   },
 })

@@ -12,7 +12,11 @@ const ticketSchema = new Schema(
     category: { type: Schema.Types.ObjectId, ref: "Category" },
     priority: {
       type: String, 
-      enum: ["low", "moderate", "high"]
+      enum: ["Low", "Moderate", "High"]
+    },
+    status: {
+      type: String, 
+      enum: ["Open", "Assigned", "In-progress", "Resolved"]
     },
     created_by: { type: Schema.Types.ObjectId, ref: "User" },
     assigned_to: { type: Schema.Types.ObjectId, ref: "User" }

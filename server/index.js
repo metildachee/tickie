@@ -9,6 +9,4 @@ app.use(cors());
 app.use("/api/auth", require("./routes/auth.route"));
 app.use("/api/ticket", require("./routes/ticket.route"));
 
-app.listen(process.env.PORT, () =>
-  console.log(`running on ${process.env.PORT}`)
-);
+app.listen(process.env.PORT, () => console.log(`running on ${process.env.PORT}`));
