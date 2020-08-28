@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Article = require("../model/ticket.model");
+const Ticket = require("../model/ticket.model");
 
 /* 
     @route GET api/articles
@@ -8,7 +8,7 @@ const Article = require("../model/ticket.model");
 */
 router.get("/", async (req, res) => {
   try {
-    let articles = await Article.find().populate("author");
+    let articles = await Ticket.find().populate("author");
 
     res.status(200).send({
       meta: {
