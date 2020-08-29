@@ -63,7 +63,7 @@ export const INITIAL_STATE = {
 };
 
 // Selectors
-export const isChecking = (state) => state.isChecking;
+export const isChecking = (state) => state.isCheckingLoginStatus;
 export const isAuth = (state) => state.isAuth;
 
 // Reducer

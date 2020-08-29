@@ -1,9 +1,11 @@
 import React, { createContext, useReducer } from "react";
 import * as authentication from "../../logic/authentication";
+import * as tickets from "../../logic/ticket";
 import logger from "./logger";
 
 const initialState = {
   ...authentication.INITIAL_STATE,
+  ...tickets.INITIAL_STATE,
 };
 
 export const store = createContext(initialState);
@@ -19,6 +21,7 @@ const GlobalStoreProvider = ({ children }) => {
     // otherwise, it's a regular reducer.
     const nextState = {
       [authentication.NAMESPACE]: authentication.reducer(state, action),
+      [tickets.NAMESPACE]: tickets.reducer(state, action),
     }[action.module];
     if (nextState === undefined) {
       return state;
