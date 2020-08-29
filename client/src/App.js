@@ -8,7 +8,6 @@ import {
 
 import "antd/dist/antd.css";
 import "./App.css";
-import Routes from "./Routes";
 import { store } from "./components/GlobalStoreProvider";
 import { isAuth } from "./logic/authentication";
 import Dashboard from "./pages/Dashboard";
