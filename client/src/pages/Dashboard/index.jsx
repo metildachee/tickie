@@ -1,16 +1,13 @@
 import React, { useContext } from "react";
 import { store } from "../../components/GlobalStoreProvider";
-import { logout } from "../../logic/authentication";
 import Table from "./Table";
+import Navigation from "../../components/Navigation";
 
 function Dashboard() {
-  const { dispatch } = useContext(store);
-
   return (
     <div>
-      this is the dashboard
+      <Navigation />
       <Table />
-      <button onClick={() => logout(dispatch)}>Logout</button>
     </div>
   );
 }
