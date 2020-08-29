@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Table } from "antd";
 import {
   sortableContainer,
@@ -55,6 +55,7 @@ export default function SortableTable() {
   useEffect(() => {
     getTickets(dispatch);
   }, []);
+
   const dataSource = tickets(state);
 
   const SortableItem = sortableElement((props) => <tr {...props} />);
@@ -94,6 +95,7 @@ export default function SortableTable() {
       dataSource={dataSource}
       columns={columns}
       rowKey="index"
+      style={{ width: "90vw", margin: "0 auto" }}
       components={{
         body: {
           wrapper: DraggableContainer,

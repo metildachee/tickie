@@ -8,6 +8,7 @@ import {
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import { store } from "./components/GlobalStoreProvider";
+import AddTicketForm from "./pages/AddTicketForm";
 
 export default function Routes() {
   const { state } = useContext(store);
@@ -17,6 +18,12 @@ export default function Routes() {
         <Route path="/login" exact>
           {state.isAuth ? <Redirect to="/" /> : <Login />}
         </Route>
+
+        <Route path="/create" exact>
+          <p>meow</p>
+          <AddTicketForm />
+        </Route>
+
         <Route path="/" exact>
           <Dashboard />
         </Route>

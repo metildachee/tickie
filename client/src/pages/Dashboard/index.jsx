@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import { store } from "../../components/GlobalStoreProvider";
 import Table from "./Table";
 import Navigation from "../../components/Navigation";
-
+import AddButton from "./AddButton";
 function Dashboard() {
   return (
     <div>
-      <Navigation />
+      <AddButton />
       <Table />
     </div>
   );
