@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Input, Button, Radio, Select } from "antd";
-import { getCategories, categories } from "../../logic/ticket";
+import { getCategories, categories, createTicket } from "../../logic/ticket";
 import { store } from "../../components/GlobalStoreProvider";
 
 export default function AddTicketForm() {
@@ -18,7 +18,8 @@ export default function AddTicketForm() {
   // Categories
   const category = categories(state);
   const onFinish = (values) => {
-    console.log(values);
+    // need to have some form of validation
+    createTicket(dispatch, values.ticket);
   };
 
   const validateMessages = {

@@ -50,7 +50,7 @@ export const updateSort = async (dispatch, payload) => {
   }
 };
 
-// @desc Gets category from ticket
+// @desc Gets categories for ticket form
 export const getCategories = async (dispatch) => {
   try {
     let results = await axios.get(`${SERVER_URL}/category`);
@@ -60,6 +60,19 @@ export const getCategories = async (dispatch) => {
       module: NAMESPACE,
       payload: results.data.categories,
     });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// @desc Creates a new ticket
+export const createTicket = async (dispatch, ticket) => {
+  const token = window.localStorage.getItem("token");
+  try {
+    let results = await axios.post(`${SERVER_URL}/ticket/create`, ticket, {
+      headers: { token: token },
+    });
+    console.log(results.data);
   } catch (error) {
     console.error(error);
   }

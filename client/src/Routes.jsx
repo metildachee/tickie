@@ -20,8 +20,7 @@ export default function Routes() {
         </Route>
 
         <Route path="/create" exact>
-          <p>meow</p>
-          <AddTicketForm />
+          {state.isAuth ? <AddTicketForm /> : <Login />}
         </Route>
 
         <Route path="/" exact>
