@@ -9,12 +9,11 @@ const Category = require("../model/category.model");
 */
 router.get("/", async (req, res) => {
   try {
-      const categories = await Category.find()
-      console.log(categories)
-      res.status(200).send({ meta: { count: categories.length }, categories})
+    const categories = await Category.find();
+    res.status(200).send({ meta: { count: categories.length }, categories });
   } catch (error) {
-      console.error(error)
-      res.status(500).json({ msg: "Catgories cannot be found." });
+    console.error(error);
+    res.status(500).json({ msg: "Catgories cannot be found." });
   }
 });
 
@@ -26,14 +25,18 @@ router.get("/", async (req, res) => {
 */
 
 router.put("/", async (req, res) => {
-    try {
-        await Category.findByIdAndUpdate(req.body._id, { name: req.body.name })
-        let category = await Category.findById(req.body._id)
-        res.status(200).send({ msg: `${category.name} successfully updated!`, category })
-    } catch (error) {
-        console.error(error)
-        res.status(500).send({ msg: `${req.body.name} name cannot be updated. Name retained as ${category.name}` })
-    }
+  try {
+    await Category.findByIdAndUpdate(req.body._id, { name: req.body.name });
+    let category = await Category.findById(req.body._id);
+    res
+      .status(200)
+      .send({ msg: `${category.name} successfully updated!`, category });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      msg: `${req.body.name} name cannot be updated. Name retained as ${category.name}`,
+    });
+  }
 });
 
 /* 
@@ -44,12 +47,16 @@ router.put("/", async (req, res) => {
 */
 
 router.post("/", async (req, res) => {
-    try {
-        let category = await Category.create(req.body)
-        res.status(200).send({ msg: `${req.body.name} successfully added!`, category })
-    } catch (error) {
-        res.status(500).send({ msg: `${req.body.name} cannot be added into categories.` })
-    }
+  try {
+    let category = await Category.create(req.body);
+    res
+      .status(200)
+      .send({ msg: `${req.body.name} successfully added!`, category });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ msg: `${req.body.name} cannot be added into categories.` });
+  }
 });
 
 module.exports = router;

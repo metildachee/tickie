@@ -1,70 +1,115 @@
 const router = require("express").Router();
 const Ticket = require("../model/ticket.model");
+const User = require("../model/user.model");
+const checkToken = require("../lib/config");
 
 /* 
-    @route GET api/articles
-    @desc Gets all articles
+    @route GET api/ticket
+    @desc Gets all ticket of the given individual
     @access public
 */
-router.get("/", async (req, res) => {
+router.get("/", checkToken, async (req, res) => {
   try {
-    let articles = await Ticket.find().populate("author");
+    let tickets = [];
+    let person = await User.findById(req.user.id);
 
-    res.status(200).send({
-      meta: {
-        count: articles.length,
-      },
-      articles,
-    });
+    switch (person.type) {
+      case "Client": {
+        tickets = await Ticket.find({ created_by: req.user.id }).populate(
+          "created_by category assigned_to"
+        );
+      }
+      case "Agent": {
+        tickets = await Ticket.find({ assigned_to: req.user.id }).populate(
+          "created_by category assigned_to"
+        );
+      }
+      case "Admin": {
+        tickets = await Ticket.find().populate(
+          "created_by category assigned_to"
+        );
+      }
+    }
+
+    tickets = translate(tickets);
+    res.send(tickets);
   } catch (error) {
+    console.error(error);
     res.status(500).json({
-      message: "1010101001111000111",
-      statuscode: "EB500",
+      msg: "Uh oh! Something went wrong. Please check if you have logged in.",
     });
   }
 });
 
 /* 
-    @route POST api/articles/create
+    @route POST api/ticket/create
     @desc  create articles
     @access public
 */
-router.post("/create", async (req, res) => {
+router.post("/create", checkToken, async (req, res) => {
+  console.log(req.body);
   try {
-    let article = new Article(req.body);
-
-    await article.save();
-
-    res.status(201).json({
-      message: "成功",
-    });
+    let ticket = await Ticket.create({ ...req.body, created_by: req.user.id });
+    res.send(ticket);
   } catch (error) {
-    res.status(500).json({
-      message: "失败",
-      statuscode: "EB500",
-    });
+    console.error(error);
+    res.json({ msg: "Ticket creation was unsuccessful. " });
   }
 });
 
 /* 
-    @route GET api/articles/:id
-    @desc Gets one article
+    @route PUTS api/ticket/update
+    @desc Updates the ticket with ALL information
     @access public
 */
-router.get("/show/:id", async (req, res) => {
-  try {
-    let article = await Article.findById(req.params.id).populate("author");
+router.put("/update/open", checkToken, async (req, res) => {
+  let assigned_to;
 
-    res.status(200).json({
-      message: "article found",
-      article,
+  try {
+    if (!req.body.assigned_to) {
+      let findTic = await Ticket.findById(req.body._id);
+      assigned_to = findTic.assigned_to;
+    } else {
+      assigned_to = req.body.assigned_to;
+    }
+
+    await Ticket.findByIdAndUpdate(req.body._id, {
+      priority: req.body.priority,
+      assigned_to: assigned_to,
+      status: req.body.status,
     });
-  } catch (err) {
-    res.status(500).json({
-      message: "oh non je ne sais pas ce qui s’est passé",
-      statuscode: "EB500",
-    });
+
+    let ticket = await Ticket.findById(req.body._id).populate(
+      "created_by assigned_to category"
+    );
+    res.status(200).send(translateOne(ticket));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: `${req.body.name} was not able to update.` });
   }
 });
+
+function translate(tempTic) {
+  let tickets = [];
+  for (let i = 0; i < tempTic.length; i++) {
+    let tic = tempTic[i];
+    tickets[i] = {
+      ...tic._doc,
+      created_by: `${tic.created_by.fname} ${tic.created_by.lname}`,
+      category: `${tic.category.name}`,
+      assigned_to: `${tic.assigned_to.fname} ${tic.assigned_to.lname}`,
+    };
+  }
+  return tickets;
+}
+
+function translateOne(tic) {
+  return {
+    ...tic._doc,
+    created_by: `${tic.created_by.fname} ${tic.created_by.lname}`,
+    category: `${tic.category.name}`,
+    assigned_to: `${tic.assigned_to.fname} ${tic.assigned_to.lname}`,
+  };
+}
 
 module.exports = router;
