@@ -23,6 +23,11 @@ const columns = [
     render: () => <DragHandle />,
   },
   {
+    title: "ID",
+    dataIndex: "_id",
+    className: "drag-visible",
+  },
+  {
     title: "Title",
     dataIndex: "name",
     className: "drag-visible",

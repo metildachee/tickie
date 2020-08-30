@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 // Module name
 export const NAMESPACE = "tickets";
@@ -69,10 +70,10 @@ export const getCategories = async (dispatch) => {
 export const createTicket = async (dispatch, ticket) => {
   const token = window.localStorage.getItem("token");
   try {
-    let results = await axios.post(`${SERVER_URL}/ticket/create`, ticket, {
+    await axios.post(`${SERVER_URL}/ticket/create`, ticket, {
       headers: { token: token },
     });
-    console.log(results.data);
+    window.location.href = "/";
   } catch (error) {
     console.error(error);
   }
