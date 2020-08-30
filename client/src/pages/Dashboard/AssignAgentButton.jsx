@@ -1,42 +1,40 @@
-import React, { useState } from "react";
-import { Modal, Button } from "antd";
+import React, { useContext, useEffect } from "react";
+import { store } from "../../components/GlobalStoreProvider";
+import { getAgents, agents } from "../../logic/user";
+import { Popconfirm, Form, Select } from "antd";
 
 export default function AssignAgentButton() {
-  const [ModalText, setModelText] = useState("Content of the modal");
-  const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const { dispatch, state } = useContext(store);
+  useEffect(() => {
+    getAgents(dispatch);
+  }, []);
 
-  const showModal = () => {
-    setVisible(true);
-  };
+  function AgentSelector() {
+    const agentsArr = agents(state);
 
-  const handleOk = () => {
-    setModelText("The modal will be closed after 2 seconds");
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
-  };
+    console.log(agentsArr);
+    return (
+      <Form.Item>
+        <Select>
+          {/* {agentsArr.map((agent) => {
+              console.log(agent)
+            return (<Select.Option key={agent._id} value={agent._id}>
+                happy
+            </Select.Option>)
+          })} */}
+          <Select.Option>happiness</Select.Option>
+        </Select>
+      </Form.Item>
+    );
+  }
 
   return (
-    <>
-      <Button type="primary" onClick={() => showModal()}>
-        Open Modal with async logic
-      </Button>
-      <Modal
-        title="Title"
-        visible={visible}
-        onOk={() => handleOk()}
-        confirmLoading={confirmLoading}
-        onCancel={() => handleCancel()}
-      >
-        <p>{ModalText}</p>
-      </Modal>
-    </>
+    <Popconfirm
+      title={() => AgentSelector()}
+      okText="Assign"
+      cancelText="Cancel"
+    >
+      <a href="#">Delete</a>
+    </Popconfirm>
   );
 }

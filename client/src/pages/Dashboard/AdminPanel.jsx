@@ -4,7 +4,7 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import { getTickets, tickets } from "../../logic/ticket";
 import { store } from "../../components/GlobalStoreProvider";
-import AssignAgentButton from "./AssignAgentButton";
+import UpdateTicketButton from "../../components/AdminUpdateTicketButton";
 
 export default function AdminDashboard() {
   const [searchText, setSearchText] = useState("");
@@ -144,7 +144,11 @@ export default function AdminDashboard() {
     {
       title: "Actions",
       render: (row) => (
-        <>{row.status === "Open" && <AssignAgentButton type="primary" />}</>
+        <>
+          {row.status === "Open" && (
+            <UpdateTicketButton ticket={row} type="primary" />
+          )}
+        </>
       ),
     },
   ];

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 
 // Module name
 export const NAMESPACE = "tickets";
@@ -79,11 +78,49 @@ export const createTicket = async (dispatch, ticket) => {
   }
 };
 
+export const updateTicket = async (dispatch, ticket, agent, priority) => {
+  const TOKEN = window.localStorage.getItem("token");
+  try {
+    let newTicket = await axios.put(
+      `${SERVER_URL}/ticket/update`,
+      {
+        _id: ticket._id,
+        priority,
+        assigned_to: agent,
+      },
+      {
+        headers: { token: TOKEN },
+      }
+    );
+    console.log(newTicket);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const assignAgent = (dispatch, id) => {
+  dispatch({
+    type: "ASSIGN_AGENT",
+    module: NAMESPACE,
+    payload: id,
+  });
+};
+
+export const assignPriority = (dispatch, priority) => {
+  dispatch({
+    type: "ASSIGN_PRIORITY",
+    module: NAMESPACE,
+    payload: priority,
+  });
+};
+
 // Initial state
 export const INITIAL_STATE = {
   isGettingTickets: false,
   tickets: [],
   categories: [],
+  agent: "",
+  priority: "Low",
 };
 
 // Selectors
@@ -92,6 +129,8 @@ export const tickets = (state) => state.tickets;
 export const nilTickets = (state) =>
   !state.isGettingTickets && state.tickets.length === 0;
 export const categories = (state) => state.categories;
+export const assignedAgent = (state) => state.agent;
+export const assignedPriority = (state) => state.priority;
 
 // Reducer
 export function reducer(state, action) {
@@ -107,6 +146,12 @@ export function reducer(state, action) {
     }
     case "GET_CATEGORIES": {
       return { ...state, categories: action.payload };
+    }
+    case "ASSIGN_AGENT": {
+      return { ...state, agent: action.payload };
+    }
+    case "ASSIGN_PRIORITY": {
+      return { ...state, priority: action.payload };
     }
     default:
       return state;
