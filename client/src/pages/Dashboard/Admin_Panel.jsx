@@ -145,7 +145,7 @@ export default function AdminDashboard() {
       dataIndex: "assigned_to",
       key: "assigned_to",
       ...getColumnSearchProps("assigned_to"),
-      render: (text) => (!text ? <span>Unassigned</span> : <span>{text}</span>),
+      // render: (text) => (<span>{text}</span>),
     },
     {
       title: "Actions",
@@ -157,5 +157,11 @@ export default function AdminDashboard() {
     },
   ];
 
-  return <Table columns={columns} dataSource={data} />;
+  return (
+    <Table
+      style={{ margin: "0 auto", width: "90vw" }}
+      columns={columns}
+      dataSource={data}
+    />
+  );
 }

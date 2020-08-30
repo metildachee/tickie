@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import CustomerTable from "./CustomerTable";
-import AddButton from "./AddButton";
+import CustomerTable from "./Client_Table";
+import AddButton from "./Client_AddTicketButton";
 import { store } from "../../components/GlobalStoreProvider";
 import { isClient, isAdmin } from "../../logic/authentication";
-import AdminDashboard from "./AdminPanel";
+import AdminDashboard from "./Admin_Panel";
 
 function Dashboard() {
   const { state } = useContext(store);

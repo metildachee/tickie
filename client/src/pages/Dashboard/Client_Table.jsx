@@ -9,7 +9,6 @@ import { MenuOutlined } from "@ant-design/icons";
 import arrayMove from "array-move";
 import { getTickets, tickets, updateSort } from "../../logic/ticket";
 import { store } from "../../components/GlobalStoreProvider";
-
 const DragHandle = sortableHandle(() => (
   <MenuOutlined style={{ cursor: "pointer", color: "#999" }} />
 ));
@@ -103,7 +102,7 @@ export default function SortableTable() {
       dataSource={dataSource}
       columns={columns}
       rowKey="index"
-      style={{ width: "90vw", margin: "0 auto" }}
+      style={{ margin: "0 auto", width: "90vw" }}
       components={{
         body: {
           wrapper: DraggableContainer,

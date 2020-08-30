@@ -100,6 +100,11 @@ export const updateTicket = async (
       }
     );
     console.log(newTicket);
+    dispatch({
+      type: "UPDATE_TICKETS",
+      module: NAMESPACE,
+      payload: newTicket.data,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -172,6 +177,13 @@ export function reducer(state, action) {
     }
     case "ASSIGN_STATUS": {
       return { ...state, status: action.payload };
+    }
+    case "UPDATE_TICKETS": {
+      let tickets = state.tickets.map((tic) =>
+        tic._id === action.payload._id ? action.payload : tic
+      );
+      console.log(tickets);
+      return { ...state, tickets: tickets };
     }
     default:
       return state;
