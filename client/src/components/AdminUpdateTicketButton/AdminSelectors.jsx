@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Form, Select } from "antd";
 import { store } from "../GlobalStoreProvider";
 import { agents } from "../../logic/user";
+import { isAdmin, isAgent } from "../../logic/authentication";
 import { assignAgent, assignPriority, assignStatus } from "../../logic/ticket";
 
 export function PrioritySelector() {
@@ -24,25 +25,36 @@ export function PrioritySelector() {
 }
 
 export function StatusSelector() {
-  const { dispatch } = useContext(store);
+  const { dispatch, state } = useContext(store);
+  const admin = isAdmin(state);
+  const agent = isAgent(state);
+
   return (
     <Form.Item label="Status">
       <Select onChange={(e) => assignStatus(dispatch, e)}>
-        <Select.Option key={1} value="Open">
-          Open
-        </Select.Option>
-        <Select.Option key={2} value="Assigned">
-          Assigned
-        </Select.Option>
-        <Select.Option key={3} value="In-progress">
-          In-progress
-        </Select.Option>
-        <Select.Option key={4} value="Resolved">
-          Resolved
-        </Select.Option>
-        <Select.Option key={5} value="Archived">
-          Archived
-        </Select.Option>
+        {admin && (
+          <>
+            <Select.Option key={1} value="Open">
+              Open
+            </Select.Option>
+            <Select.Option key={2} value="Assigned">
+              Assigned
+            </Select.Option>
+          </>
+        )}
+        {agent && (
+          <>
+            <Select.Option key={3} value="In-progress">
+              In-progress
+            </Select.Option>
+            <Select.Option key={4} value="Resolved">
+              Resolved
+            </Select.Option>
+            <Select.Option key={5} value="Archived">
+              Archived
+            </Select.Option>
+          </>
+        )}
       </Select>
     </Form.Item>
   );

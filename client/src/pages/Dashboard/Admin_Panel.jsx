@@ -5,6 +5,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { getTickets, tickets } from "../../logic/ticket";
 import { store } from "../../components/GlobalStoreProvider";
 import UpdateTicketButton from "../../components/AdminUpdateTicketButton";
+import { isAdmin } from "../../logic/authentication";
 
 export default function AdminDashboard() {
   const [searchText, setSearchText] = useState("");
@@ -141,13 +142,6 @@ export default function AdminDashboard() {
       ...getColumnSearchProps("created_by"),
     },
     {
-      title: "Assigned",
-      dataIndex: "assigned_to",
-      key: "assigned_to",
-      ...getColumnSearchProps("assigned_to"),
-      // render: (text) => (<span>{text}</span>),
-    },
-    {
       title: "Actions",
       render: (row) => (
         <>
@@ -156,6 +150,15 @@ export default function AdminDashboard() {
       ),
     },
   ];
+
+  if (isAdmin(state)) {
+    columns.push({
+      title: "Assigned",
+      dataIndex: "assigned_to",
+      key: "assigned_to",
+      ...getColumnSearchProps("assigned_to"),
+    });
+  }
 
   return (
     <Table
