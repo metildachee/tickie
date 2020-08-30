@@ -78,15 +78,22 @@ export const createTicket = async (dispatch, ticket) => {
   }
 };
 
-export const updateTicket = async (dispatch, ticket, agent, priority) => {
+export const updateTicket = async (
+  dispatch,
+  ticket,
+  agent,
+  priority,
+  status
+) => {
   const TOKEN = window.localStorage.getItem("token");
   try {
     let newTicket = await axios.put(
-      `${SERVER_URL}/ticket/update`,
+      `${SERVER_URL}/ticket/update/open`,
       {
         _id: ticket._id,
         priority,
         assigned_to: agent,
+        status,
       },
       {
         headers: { token: TOKEN },
@@ -114,13 +121,22 @@ export const assignPriority = (dispatch, priority) => {
   });
 };
 
+export const assignStatus = (dispatch, status) => {
+  dispatch({
+    type: "ASSIGN_STATUS",
+    module: NAMESPACE,
+    payload: status,
+  });
+};
+
 // Initial state
 export const INITIAL_STATE = {
   isGettingTickets: false,
   tickets: [],
   categories: [],
   agent: "",
-  priority: "Low",
+  priority: "",
+  status: "",
 };
 
 // Selectors
@@ -131,6 +147,7 @@ export const nilTickets = (state) =>
 export const categories = (state) => state.categories;
 export const assignedAgent = (state) => state.agent;
 export const assignedPriority = (state) => state.priority;
+export const assignedStatus = (state) => state.status;
 
 // Reducer
 export function reducer(state, action) {
@@ -152,6 +169,9 @@ export function reducer(state, action) {
     }
     case "ASSIGN_PRIORITY": {
       return { ...state, priority: action.payload };
+    }
+    case "ASSIGN_STATUS": {
+      return { ...state, status: action.payload };
     }
     default:
       return state;

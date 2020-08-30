@@ -2,11 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Modal, Button } from "antd";
 import { store } from "../GlobalStoreProvider";
 import { getAgents } from "../../logic/user";
-import { AgentSelector, PrioritySelector } from "./AdminSelectors";
+import {
+  AgentSelector,
+  PrioritySelector,
+  StatusSelector,
+} from "./AdminSelectors";
 import {
   assignedAgent,
   assignedPriority,
   updateTicket,
+  assignedStatus,
 } from "../../logic/ticket";
 
 export default function UpdateTicketButton({ ticket }) {
@@ -27,7 +32,8 @@ export default function UpdateTicketButton({ ticket }) {
       dispatch,
       ticket,
       assignedAgent(state),
-      assignedPriority(state)
+      assignedPriority(state),
+      assignedStatus(state)
     );
     setTimeout(() => {
       setVisible(false);
@@ -42,7 +48,7 @@ export default function UpdateTicketButton({ ticket }) {
   return (
     <>
       <Button type="primary" onClick={() => showModal()}>
-        Assign
+        {ticket.status === "Open" ? "Assign" : "Update Status"}
       </Button>
       <Modal
         title="Update ticket"
@@ -51,7 +57,8 @@ export default function UpdateTicketButton({ ticket }) {
         confirmLoading={confirmLoading}
         onCancel={() => handleCancel()}
       >
-        <AgentSelector />
+        {ticket.status === "Open" && <AgentSelector />}
+        <StatusSelector />
         <PrioritySelector />
       </Modal>
     </>

@@ -123,6 +123,12 @@ export default function AdminDashboard() {
       ...getColumnSearchProps("status"),
     },
     {
+      title: "Priority",
+      dataIndex: "priority",
+      key: "priority",
+      ...getColumnSearchProps("priority"),
+    },
+    {
       title: "Remarks",
       dataIndex: "remarks",
       key: "remarks",
@@ -145,9 +151,7 @@ export default function AdminDashboard() {
       title: "Actions",
       render: (row) => (
         <>
-          {row.status === "Open" && (
-            <UpdateTicketButton ticket={row} type="primary" />
-          )}
+          <UpdateTicketButton ticket={row} type="primary" />
         </>
       ),
     },
