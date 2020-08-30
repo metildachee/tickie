@@ -1,42 +1,20 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useContext, useEffect } from "react";
 import { Table, Input, Button, Space } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
-
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Joe Black",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    assigned_to: "Andrew",
-  },
-  {
-    key: "3",
-    name: "Jim Green",
-    age: 32,
-    assigned_to: "",
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-    assigned_to: "Andrew",
-  },
-];
+import { getTickets, tickets } from "../../logic/ticket";
+import { store } from "../../components/GlobalStoreProvider";
 
 export default function AdminDashboard() {
   const [searchText, setSearchText] = useState("");
   const [searchedCol, setSearchedCol] = useState("");
+  const { dispatch, state } = useContext(store);
+
+  useEffect(() => {
+    getTickets(dispatch);
+  }, []);
+
+  const data = tickets(state);
 
   let searchInput;
   const getColumnSearchProps = (dataIndex) => ({
@@ -127,17 +105,34 @@ export default function AdminDashboard() {
       ...getColumnSearchProps("name"),
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-      width: "20%",
-      ...getColumnSearchProps("age"),
+      title: "Description",
+      dataIndex: "desc",
+      key: "desc",
+      ...getColumnSearchProps("desc"),
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
-      ...getColumnSearchProps("address"),
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
+      ...getColumnSearchProps("category"),
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      ...getColumnSearchProps("status"),
+    },
+    {
+      title: "Remarks",
+      dataIndex: "remarks",
+      key: "remarks",
+      ...getColumnSearchProps("remarks"),
+    },
+    {
+      title: "Created by",
+      dataIndex: "created_by",
+      key: "created_by",
+      ...getColumnSearchProps("created_by"),
     },
     {
       title: "Assigned",
@@ -148,6 +143,9 @@ export default function AdminDashboard() {
         if (!text) return <span>Unassigned</span>;
         return <span>{text}</span>;
       },
+    },
+    {
+      title: "Actions",
     },
   ];
 
