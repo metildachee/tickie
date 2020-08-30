@@ -4,6 +4,7 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import { getTickets, tickets } from "../../logic/ticket";
 import { store } from "../../components/GlobalStoreProvider";
+import AssignAgentButton from "./AssignAgentButton";
 
 export default function AdminDashboard() {
   const [searchText, setSearchText] = useState("");
@@ -101,7 +102,6 @@ export default function AdminDashboard() {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      width: "30%",
       ...getColumnSearchProps("name"),
     },
     {
@@ -139,13 +139,13 @@ export default function AdminDashboard() {
       dataIndex: "assigned_to",
       key: "assigned_to",
       ...getColumnSearchProps("assigned_to"),
-      render: (text) => {
-        if (!text) return <span>Unassigned</span>;
-        return <span>{text}</span>;
-      },
+      render: (text) => (!text ? <span>Unassigned</span> : <span>{text}</span>),
     },
     {
       title: "Actions",
+      render: (row) => (
+        <>{row.status === "Open" && <AssignAgentButton type="primary" />}</>
+      ),
     },
   ];
 
