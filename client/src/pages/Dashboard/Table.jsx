@@ -58,7 +58,10 @@ export default function SortableTable() {
 
   const dataSource = tickets(state);
 
-  const SortableItem = sortableElement((props) => <tr {...props} />);
+  const SortableItem = sortableElement((props) => {
+    // console.log(props)
+    return <tr {...props} />;
+  });
   const SortableContainer = sortableContainer((props) => <tbody {...props} />);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
@@ -68,7 +71,7 @@ export default function SortableTable() {
         oldIndex,
         newIndex
       ).filter((el) => !!el);
-      console.log("Sorted items: ", newData);
+      // console.log("Sorted items: ", newData);
       updateSort(dispatch, newData);
     }
   };

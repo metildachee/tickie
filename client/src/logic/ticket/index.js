@@ -32,6 +32,7 @@ export const getTickets = async (dispatch) => {
   }
 };
 
+// Updates the state with newly sorted payload
 export const updateSort = async (dispatch, payload) => {
   dispatch({
     type: "UPDATE_SORT",
@@ -49,17 +50,34 @@ export const updateSort = async (dispatch, payload) => {
   }
 };
 
+// @desc Gets category from ticket
+export const getCategories = async (dispatch) => {
+  try {
+    let results = await axios.get(`${SERVER_URL}/category`);
+    console.log(results.data.categories);
+    dispatch({
+      type: "GET_CATEGORIES",
+      module: NAMESPACE,
+      payload: results.data.categories,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // Initial state
 export const INITIAL_STATE = {
   isGettingTickets: false,
   tickets: [],
+  categories: [],
 };
 
 // Selectors
 export const gettingTickets = (state) => state.isGettingTickets;
 export const tickets = (state) => state.tickets;
 export const nilTickets = (state) =>
-  !state.isGettingTickets && tickets.length === 0;
+  !state.isGettingTickets && state.tickets.length === 0;
+export const categories = (state) => state.categories;
 
 // Reducer
 export function reducer(state, action) {
@@ -72,6 +90,9 @@ export function reducer(state, action) {
     }
     case "TICKETS_FAILED": {
       return { ...state, isGettingTickets: false };
+    }
+    case "GET_CATEGORIES": {
+      return { ...state, categories: action.payload };
     }
     default:
       return state;
