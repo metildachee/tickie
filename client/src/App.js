@@ -9,14 +9,18 @@ import {
 import "antd/dist/antd.css";
 import "./App.css";
 import { store } from "./components/GlobalStoreProvider";
-import { isAuth } from "./logic/authentication";
+import { isAuth, isAdmin, isClient, isAgent } from "./logic/authentication";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import AddTicketForm from "./pages/AddTicketForm";
 import Navigation from "./components/Navigation";
+import NoEntry from "./pages/NoEntry";
 function App() {
   const { state } = useContext(store);
   const isLogin = isAuth(state);
+  const admin = isAdmin(state);
+  const client = isClient(state);
+  const agent = isAgent(state);
 
   return (
     <div className="App">
@@ -32,7 +36,7 @@ function App() {
           </Route>
 
           <Route path="/create" exact>
-            <AddTicketForm />
+            {isLogin && client ? <AddTicketForm /> : <NoEntry />}
           </Route>
         </Switch>
       </Router>

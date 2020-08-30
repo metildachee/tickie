@@ -65,6 +65,9 @@ export const INITIAL_STATE = {
 // Selectors
 export const isChecking = (state) => state.isCheckingLoginStatus;
 export const isAuth = (state) => state.isAuth;
+export const isAdmin = (state) => state.user.type === "Admin";
+export const isClient = (state) => state.user.type === "Client";
+export const isAgent = (state) => state.user.type === "Agent";
 
 // Reducer
 export function reducer(state, action) {

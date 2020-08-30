@@ -1,12 +1,19 @@
 import React, { useContext } from "react";
-import Table from "./Table";
-import Navigation from "../../components/Navigation";
+import CustomerTable from "./CustomerTable";
 import AddButton from "./AddButton";
+import { store } from "../../components/GlobalStoreProvider";
+import { isClient, isAdmin } from "../../logic/authentication";
+import AdminDashboard from "./AdminPanel";
+
 function Dashboard() {
+  const { state } = useContext(store);
+  const client = isClient(state);
+  const admin = isAdmin(state);
   return (
     <div>
-      <AddButton />
-      <Table />
+      {client && <AddButton />}
+      {client && <CustomerTable />}
+      {admin && <AdminDashboard />}
     </div>
   );
 }
