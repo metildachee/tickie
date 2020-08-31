@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Breadcrumb } from "antd";
 import { logout } from "../../logic/authentication";
 import { store } from "../GlobalStoreProvider";
+import ViewProfileButton from "./ViewProfileButton";
+
 export default function Navigation() {
   const { dispatch } = useContext(store);
 
@@ -21,6 +23,7 @@ export default function Navigation() {
         <span style={{ color: "white", paddingLeft: "10px" }}>tickie</span>
       </Breadcrumb.Item>
       <Breadcrumb.Item href="/">
+        <ViewProfileButton />
         <span
           style={{ color: "white", paddingRight: "15px" }}
           onClick={() => logout(dispatch)}

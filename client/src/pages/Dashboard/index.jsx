@@ -3,7 +3,7 @@ import CustomerTable from "./Client_Table";
 import AddButton from "./Client_AddTicketButton";
 import { store } from "../../components/GlobalStoreProvider";
 import { isClient } from "../../logic/authentication";
-import AdminDashboard from "./Admin_Panel";
+import AdminDashboard from "./Admin_Table";
 
 function Dashboard() {
   const { state } = useContext(store);

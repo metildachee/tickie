@@ -31,6 +31,10 @@ export const INITIAL_STATE = {
 
 // Selectors
 export const agents = (state) => state.agents;
+export const getFullName = (state) => `${state.user.fname} ${state.user.lname}`;
+export const getEmail = (state) => state.user.email;
+export const getUserID = (state) => state.user._id;
+export const getUserType = (state) => state.user.type;
 
 // Reducer
 export function reducer(state, action) {

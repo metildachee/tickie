@@ -18,9 +18,7 @@ import NoEntry from "./pages/NoEntry";
 function App() {
   const { state } = useContext(store);
   const isLogin = isAuth(state);
-  const admin = isAdmin(state);
   const client = isClient(state);
-  const agent = isAgent(state);
 
   return (
     <div className="App">

@@ -47,10 +47,6 @@ const columns = [
     title: "Remarks",
     dataIndex: "remarks",
   },
-  {
-    title: "Action",
-    dataIndex: "action",
-  },
 ];
 
 export default function SortableTable() {
@@ -75,7 +71,6 @@ export default function SortableTable() {
         oldIndex,
         newIndex
       ).filter((el) => !!el);
-      // console.log("Sorted items: ", newData);
       updateSort(dispatch, newData);
     }
   };
