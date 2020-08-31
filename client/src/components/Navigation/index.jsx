@@ -35,12 +35,6 @@ export default function Navigation() {
       </Breadcrumb.Item>
       <Breadcrumb.Item href="/">
         <ViewProfileButton />
-        <Text
-          style={{ color: "white", paddingRight: "15px" }}
-          onClick={() => logout(dispatch)}
-        >
-          Logout
-        </Text>
       </Breadcrumb.Item>
     </Breadcrumb>
   );

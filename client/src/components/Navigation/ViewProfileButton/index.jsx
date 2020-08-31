@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Drawer, Divider, Col, Row } from "antd";
+import { Drawer, Divider, Col, Row, Button } from "antd";
 import { store } from "../../GlobalStoreProvider";
 import {
   getFullName,
@@ -8,7 +8,7 @@ import {
   getUserType,
 } from "../../../logic/user";
 import KPITracker from "./KPITracker";
-import { isClient } from "../../../logic/authentication";
+import { isClient, logout } from "../../../logic/authentication";
 
 const DescriptionItem = ({ title, content }) => (
   <div className="site-description-item-profile-wrapper">
@@ -20,7 +20,7 @@ const DescriptionItem = ({ title, content }) => (
 
 export default function Nav_ProfileButton() {
   const [visible, setVisible] = useState(false);
-  const { state } = useContext(store);
+  const { state, dispatch } = useContext(store);
   const fullName = getFullName(state);
   const email = getEmail(state);
   const userID = getUserID(state);
@@ -117,6 +117,15 @@ export default function Nav_ProfileButton() {
         <Row>
           <Col span={12}>
             <DescriptionItem title="Email" content={email} />
+          </Col>
+        </Row>
+        <Divider />
+        <p className="site-description-item-profile-p">Actions</p>
+        <Row>
+          <Col>
+            <Button type="dashed" onClick={() => logout(dispatch)}>
+              Logout
+            </Button>
           </Col>
         </Row>
       </Drawer>
