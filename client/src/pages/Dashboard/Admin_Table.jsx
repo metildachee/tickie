@@ -160,7 +160,7 @@ export default function AdminDashboard() {
               </Tag>
             );
           }
-          case "In-Progress": {
+          case "In-progress": {
             return (
               <Tag value={row} icon={<SyncOutlined spin />} color="processing">
                 {row}

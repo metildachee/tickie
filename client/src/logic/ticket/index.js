@@ -155,12 +155,13 @@ export const assignedPriority = (state) => state.priority;
 export const assignedStatus = (state) => state.status;
 export const getClosedTickets = (state) =>
   state.tickets.filter(
-    (tic) => tic.status === "Resolved" || tic.state === "Archived"
+    (tic) => tic.status === "Resolved" || tic.status === "Archived"
   );
 export const getOpenTickets = (state) =>
   state.tickets.filter((tic) => tic.status === "Open");
 export const getAssignedTickets = (state) =>
   state.tickets.filter((tic) => tic.status === "Assigned");
+
 // Reducer
 export function reducer(state, action) {
   switch (action.type) {

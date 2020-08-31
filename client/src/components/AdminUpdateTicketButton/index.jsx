@@ -12,6 +12,7 @@ import {
   assignedPriority,
   updateTicket,
   assignedStatus,
+  tickets,
 } from "../../logic/ticket";
 
 export default function UpdateTicketButton({ ticket }) {
@@ -58,7 +59,7 @@ export default function UpdateTicketButton({ ticket }) {
         onCancel={() => handleCancel()}
       >
         {ticket.status === "Open" && <AgentSelector />}
-        <StatusSelector />
+        <StatusSelector status={ticket.status} />
         <PrioritySelector />
       </Modal>
     </>

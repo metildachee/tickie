@@ -24,7 +24,7 @@ export function PrioritySelector() {
   );
 }
 
-export function StatusSelector() {
+export function StatusSelector({ status }) {
   const { dispatch, state } = useContext(store);
   const admin = isAdmin(state);
   const agent = isAgent(state);
@@ -34,24 +34,34 @@ export function StatusSelector() {
       <Select onChange={(e) => assignStatus(dispatch, e)}>
         {admin && (
           <>
-            <Select.Option key={1} value="Open">
-              Open
-            </Select.Option>
-            <Select.Option key={2} value="Assigned">
-              Assigned
-            </Select.Option>
+            {status === "Open" && (
+              <Select.Option key={1} value="Assigned">
+                Assigned
+              </Select.Option>
+            )}
+
+            {(status === "Open" || status === "Resolved") && (
+              <Select.Option key={2} value="Archived">
+                Archived
+              </Select.Option>
+            )}
+
+            {status !== "Open" && status !== "Resolved" && (
+              <Select.Option key={3} value={status}>
+                {status}
+              </Select.Option>
+            )}
           </>
         )}
         {agent && (
           <>
-            <Select.Option key={3} value="In-progress">
-              In-progress
-            </Select.Option>
+            {status !== "Resolved" && (
+              <Select.Option key={3} value="In-progress">
+                In-progress
+              </Select.Option>
+            )}
             <Select.Option key={4} value="Resolved">
               Resolved
-            </Select.Option>
-            <Select.Option key={5} value="Archived">
-              Archived
             </Select.Option>
           </>
         )}
