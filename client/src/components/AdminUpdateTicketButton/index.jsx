@@ -12,11 +12,10 @@ import {
   assignedPriority,
   updateTicket,
   assignedStatus,
-  tickets,
 } from "../../logic/ticket";
 
 export default function UpdateTicketButton({ ticket }) {
-  const [ModalText, setModelText] = useState("Content of the modal");
+  const [ModalText, setModelText] = useState("Update ticket");
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const showModal = () => setVisible(true);
@@ -56,7 +55,7 @@ export default function UpdateTicketButton({ ticket }) {
             {ticket.status === "Open" ? "Assign" : "Update Status"}
           </Button>
           <Modal
-            title="Update ticket"
+            title={ModalText}
             visible={visible}
             onOk={() => handleOk()}
             confirmLoading={confirmLoading}

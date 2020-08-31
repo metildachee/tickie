@@ -15,6 +15,7 @@ import AddTicketForm from "./pages/AddTicketForm";
 import Navigation from "./components/Navigation";
 import NoEntry from "./pages/NoEntry";
 import Landing from "./pages/Landing";
+
 function App() {
   const { state } = useContext(store);
   const isLogin = isAuth(state);
