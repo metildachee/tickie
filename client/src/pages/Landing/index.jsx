@@ -2,6 +2,7 @@ import React from "react";
 import Login from "../../components/Login";
 import KPI from "./kpi.jpg";
 import Productivity from "./productivity.jpg";
+import GithubIcon from "./GithubIcon";
 import "./index.css";
 
 import { Typography, Button, Row, Col } from "antd";
@@ -11,6 +12,7 @@ export default function Landing() {
   return (
     <div className="smooth-scroll-parent">
       <div className="container">
+        <GithubIcon />
         <section className="section center-xy">
           <div>
             <div>
