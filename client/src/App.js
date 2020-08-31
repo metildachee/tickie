@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import AddTicketForm from "./pages/AddTicketForm";
 import Navigation from "./components/Navigation";
 import NoEntry from "./pages/NoEntry";
+import Landing from "./pages/Landing";
 function App() {
   const { state } = useContext(store);
   const isLogin = isAuth(state);
@@ -26,11 +27,11 @@ function App() {
         {isLogin && <Navigation />}
         <Switch>
           <Route path="/login" exact>
-            {isLogin ? <Redirect to="/" /> : <Login />}
+            {isLogin ? <Redirect to="/" /> : <Landing />}
           </Route>
 
           <Route path="/" exact>
-            {isLogin ? <Dashboard /> : <Login />}
+            {isLogin ? <Dashboard /> : <Landing />}
           </Route>
 
           <Route path="/create" exact>

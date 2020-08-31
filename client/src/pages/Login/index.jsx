@@ -3,7 +3,7 @@ import axios from "axios";
 import { Form, Input, Button, Checkbox, Typography } from "antd";
 import { store } from "../../components/GlobalStoreProvider";
 import { login, checkToken } from "../../logic/authentication";
-const { Title } = Typography;
+const { Text } = Typography;
 
 export default function Login() {
   const { dispatch } = useContext(store);
@@ -46,7 +46,9 @@ export default function Login() {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
-        <Title>Welcome back!</Title>
+        <Text style={{ fontSize: "40px", color: "#11202e" }}>
+          Welcome back!
+        </Text>
         <Form.Item
           label="Email"
           name="email"
@@ -77,9 +79,15 @@ export default function Login() {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
+        <Form.Item style={{ marginTop: "0px" }}>
+          <Button
+            type="primary"
+            shape="round"
+            size="large"
+            htmlType="submit"
+            ghost
+          >
+            Login Tickie
           </Button>
         </Form.Item>
       </Form>

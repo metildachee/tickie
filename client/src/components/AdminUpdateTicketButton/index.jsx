@@ -48,20 +48,26 @@ export default function UpdateTicketButton({ ticket }) {
 
   return (
     <>
-      <Button type="primary" onClick={() => showModal()}>
-        {ticket.status === "Open" ? "Assign" : "Update Status"}
-      </Button>
-      <Modal
-        title="Update ticket"
-        visible={visible}
-        onOk={() => handleOk()}
-        confirmLoading={confirmLoading}
-        onCancel={() => handleCancel()}
-      >
-        {ticket.status === "Open" && <AgentSelector />}
-        <StatusSelector status={ticket.status} />
-        <PrioritySelector />
-      </Modal>
+      {ticket.status === "Archived" ? (
+        <Button type="dashed">Ticket closed</Button>
+      ) : (
+        <>
+          <Button type="primary" onClick={() => showModal()}>
+            {ticket.status === "Open" ? "Assign" : "Update Status"}
+          </Button>
+          <Modal
+            title="Update ticket"
+            visible={visible}
+            onOk={() => handleOk()}
+            confirmLoading={confirmLoading}
+            onCancel={() => handleCancel()}
+          >
+            {ticket.status === "Open" && <AgentSelector />}
+            <StatusSelector status={ticket.status} />
+            <PrioritySelector />
+          </Modal>
+        </>
+      )}
     </>
   );
 }

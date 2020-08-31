@@ -118,6 +118,11 @@ export default function AddTicketForm() {
           <Form.Item name={["ticket", "remarks"]} label="Remarks">
             <Input.TextArea />
           </Form.Item>
+          <p>
+            Please note that once your ticket has been submitted, it will no
+            longer be editable.
+          </p>
+          <p>Please make sure you have included all the details.</p>
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit

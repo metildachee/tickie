@@ -1,0 +1,41 @@
+.smooth-scroll-parent {
+  height: 100vh;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.section {
+  height: 100vh;
+  position: relative;
+  scroll-snap-align: center;
+}
+
+.center-xy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tickie-title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: "#11202e";
+  font-size: 100px;
+  margin-bottom: -10px;
+  padding-bottom: 0px;
+}
+
+.section:nth-child(1),
+.section:last-child {
+  background-color: aliceblue;
+}
+
+img {
+  height: 50vh;
+}
