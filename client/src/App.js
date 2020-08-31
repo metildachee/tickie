@@ -9,9 +9,8 @@ import {
 import "antd/dist/antd.css";
 import "./App.css";
 import { store } from "./components/GlobalStoreProvider";
-import { isAuth, isAdmin, isClient, isAgent } from "./logic/authentication";
+import { isAuth, isClient } from "./logic/authentication";
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
 import AddTicketForm from "./pages/AddTicketForm";
 import Navigation from "./components/Navigation";
 import NoEntry from "./pages/NoEntry";

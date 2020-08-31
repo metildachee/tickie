@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../Login";
+import Login from "../../components/Login";
 import KPI from "./kpi.jpg";
 import Productivity from "./productivity.jpg";
 import "./index.css";
@@ -35,22 +35,26 @@ export default function Landing() {
         </section>
         <section id="learn-more" className="section center-xy">
           <Row>
-            <Col span={12}>
-              <Row>
-                <img src={Productivity} alt="Productivity" />
-              </Row>
-              <Row>
-                <Text style={{ fontSize: "20px" }}>
-                  Add comments, view threads to see <Text mark>exactly</Text>{" "}
-                  what is happening.
-                </Text>
-              </Row>
+            <Col className="center-xy" span={12}>
+              <div>
+                <Row>
+                  <img src={Productivity} alt="Productivity" />
+                </Row>
+                <Row>
+                  <Text style={{ fontSize: "20px" }}>
+                    Add comments, view threads to see <Text mark>exactly</Text>{" "}
+                    what is happening.
+                  </Text>
+                </Row>
+              </div>
             </Col>
-            <Col span={12}>
-              <Text style={{ fontSize: "20px" }}>
-                Manage KPI and performance <Text mark>at ease</Text>
-              </Text>
-              <img src={KPI} alt="KPI" />
+            <Col className="center-xy" span={12}>
+              <div>
+                <Text style={{ fontSize: "20px" }}>
+                  Manage KPI and performance <Text mark>at ease</Text>
+                </Text>
+                <img src={KPI} alt="KPI" />
+              </div>
             </Col>
           </Row>
         </section>
