@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 export default function Client_AddTicketButton() {
-  return <Link to="/create">Add ticket</Link>;
+  return (
+    <Button type="primary">
+      <Link to="/create">Add ticket</Link>
+    </Button>
+  );
 }

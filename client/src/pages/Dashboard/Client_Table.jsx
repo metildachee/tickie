@@ -1,11 +1,17 @@
 import React, { useEffect, useContext } from "react";
-import { Table } from "antd";
+import { Table, Tag } from "antd";
 import {
   sortableContainer,
   sortableElement,
   sortableHandle,
 } from "react-sortable-hoc";
-import { MenuOutlined } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  CheckCircleOutlined,
+  SyncOutlined,
+  ExclamationCircleOutlined,
+  ClockCircleOutlined,
+} from "@ant-design/icons";
 import arrayMove from "array-move";
 import { getTickets, tickets, updateSort } from "../../logic/ticket";
 import { store } from "../../components/GlobalStoreProvider";
@@ -23,7 +29,7 @@ const columns = [
   },
   {
     title: "ID",
-    dataIndex: "_id",
+    dataIndex: "key",
     className: "drag-visible",
   },
   {
@@ -38,6 +44,56 @@ const columns = [
   {
     title: "Status",
     dataIndex: "status",
+    render: (row) => {
+      switch (row) {
+        case "Open": {
+          return (
+            <Tag
+              value={row}
+              icon={<ExclamationCircleOutlined />}
+              color="warning"
+            >
+              {row}
+            </Tag>
+          );
+        }
+        case "Assigned": {
+          return (
+            <Tag icon={<ClockCircleOutlined />} color="default">
+              {row}
+            </Tag>
+          );
+        }
+        case "In-Progress": {
+          return (
+            <Tag value={row} icon={<SyncOutlined spin />} color="processing">
+              {row}
+            </Tag>
+          );
+        }
+        case "Resolved": {
+          return (
+            <Tag value={row} icon={<CheckCircleOutlined />} color="success">
+              {row}
+            </Tag>
+          );
+        }
+        case "Archived": {
+          return (
+            <Tag value={row} color="default">
+              {row}
+            </Tag>
+          );
+        }
+        default: {
+          return (
+            <Tag value="Unassigned" color="volcano">
+              Unassigned
+            </Tag>
+          );
+        }
+      }
+    },
   },
   {
     title: "Assigned",
@@ -58,10 +114,7 @@ export default function SortableTable() {
 
   const dataSource = tickets(state);
 
-  const SortableItem = sortableElement((props) => {
-    // console.log(props)
-    return <tr {...props} />;
-  });
+  const SortableItem = sortableElement((props) => <tr {...props} />);
   const SortableContainer = sortableContainer((props) => <tbody {...props} />);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
@@ -97,7 +150,6 @@ export default function SortableTable() {
       dataSource={dataSource}
       columns={columns}
       rowKey="index"
-      style={{ margin: "0 auto", width: "90vw" }}
       components={{
         body: {
           wrapper: DraggableContainer,

@@ -8,6 +8,7 @@ import {
   getUserType,
 } from "../../../logic/user";
 import KPITracker from "./KPITracker";
+import { isClient } from "../../../logic/authentication";
 
 const DescriptionItem = ({ title, content }) => (
   <div className="site-description-item-profile-wrapper">
@@ -24,6 +25,7 @@ export default function Nav_ProfileButton() {
   const email = getEmail(state);
   const userID = getUserID(state);
   const userType = getUserType(state);
+  const client = isClient(state);
 
   const showDrawer = (e) => {
     e.preventDefault();
@@ -78,7 +80,9 @@ export default function Nav_ProfileButton() {
         </Row>
         <Row>
           <Col span={12}>
-            <DescriptionItem title="Performance" content={<KPITracker />} />
+            {!client && (
+              <DescriptionItem title="Performance" content={<KPITracker />} />
+            )}
           </Col>
         </Row>
 

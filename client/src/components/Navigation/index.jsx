@@ -15,7 +15,7 @@ export default function Navigation() {
         alignItems: "center",
         backgroundColor: "#001529",
         color: "white",
-        height: "5vh",
+        height: "8vh",
         fontSize: "15px",
       }}
     >

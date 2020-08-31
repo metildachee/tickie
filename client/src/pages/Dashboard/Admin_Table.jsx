@@ -1,11 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Table, Input, Button, Space } from "antd";
+import { Table, Input, Button, Space, Tag } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import { getTickets, tickets } from "../../logic/ticket";
 import { store } from "../../components/GlobalStoreProvider";
 import UpdateTicketButton from "../../components/AdminUpdateTicketButton";
 import { isAdmin } from "../../logic/authentication";
+import {
+  CheckCircleOutlined,
+  SyncOutlined,
+  ExclamationCircleOutlined,
+  ClockCircleOutlined,
+} from "@ant-design/icons";
 
 export default function AdminDashboard() {
   const [searchText, setSearchText] = useState("");
@@ -100,6 +106,12 @@ export default function AdminDashboard() {
 
   const columns = [
     {
+      title: "ID",
+      dataIndex: "key",
+      key: "key",
+      ...getColumnSearchProps("key"),
+    },
+    {
       title: "Name",
       dataIndex: "name",
       key: "name",
@@ -118,22 +130,104 @@ export default function AdminDashboard() {
       ...getColumnSearchProps("category"),
     },
     {
+      title: "Remarks",
+      dataIndex: "remarks",
+      key: "remarks",
+      ...getColumnSearchProps("remarks"),
+    },
+    {
       title: "Status",
       dataIndex: "status",
       key: "status",
       ...getColumnSearchProps("status"),
+      render: (row) => {
+        switch (row) {
+          case "Open": {
+            return (
+              <Tag
+                value={row}
+                icon={<ExclamationCircleOutlined />}
+                color="warning"
+              >
+                {row}
+              </Tag>
+            );
+          }
+          case "Assigned": {
+            return (
+              <Tag icon={<ClockCircleOutlined />} color="default">
+                {row}
+              </Tag>
+            );
+          }
+          case "In-Progress": {
+            return (
+              <Tag value={row} icon={<SyncOutlined spin />} color="processing">
+                {row}
+              </Tag>
+            );
+          }
+          case "Resolved": {
+            return (
+              <Tag value={row} icon={<CheckCircleOutlined />} color="success">
+                {row}
+              </Tag>
+            );
+          }
+          case "Archived": {
+            return (
+              <Tag value={row} color="default">
+                {row}
+              </Tag>
+            );
+          }
+          default: {
+            return (
+              <Tag value="Unassigned" color="volcano">
+                Unassigned
+              </Tag>
+            );
+          }
+        }
+      },
     },
     {
       title: "Priority",
       dataIndex: "priority",
       key: "priority",
       ...getColumnSearchProps("priority"),
-    },
-    {
-      title: "Remarks",
-      dataIndex: "remarks",
-      key: "remarks",
-      ...getColumnSearchProps("remarks"),
+      render: (row) => {
+        switch (row) {
+          case "Low": {
+            return (
+              <Tag value={row} color="blue">
+                {row}
+              </Tag>
+            );
+          }
+          case "Moderate": {
+            return (
+              <Tag value={row} color="magenta">
+                {row}
+              </Tag>
+            );
+          }
+          case "High": {
+            return (
+              <Tag value={row} color="red">
+                {row}
+              </Tag>
+            );
+          }
+          default: {
+            return (
+              <Tag value="Unassigned" color="volcano">
+                Unassigned
+              </Tag>
+            );
+          }
+        }
+      },
     },
     {
       title: "Created by",
@@ -152,7 +246,7 @@ export default function AdminDashboard() {
   ];
 
   if (isAdmin(state)) {
-    columns.push({
+    columns.splice(columns.length - 1, 0, {
       title: "Assigned",
       dataIndex: "assigned_to",
       key: "assigned_to",

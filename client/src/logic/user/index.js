@@ -13,7 +13,6 @@ export const getAgents = async (dispatch) => {
     let results = await axios.get(`${SERVER_URL}/auth/user/agents`, {
       headers: { token: TOKEN },
     });
-    console.log(results.data);
     dispatch({
       type: "ALL_AGENTS",
       module: NAMESPACE,
