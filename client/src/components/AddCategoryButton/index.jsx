@@ -1,52 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { Modal, Button } from "antd";
-// import { store } from "../GlobalStoreProvider";
-// import { getAgents } from "../../logic/user";
+import React, { useState, useContext, useEffect } from "react";
+import { Button } from "antd";
+import CollectionCreateForm from "./CollectionCreateForm";
+import { getCategories, addCategory } from "../../logic/category";
+import openNotificationWithIcon from "../Notification";
+import { store } from "../GlobalStoreProvider";
 
-export default function UpdateTicketButton({ ticket }) {
-  const [ModalText, setModelText] = useState("Add category");
+export default function CollectionsPage() {
   const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const showModal = () => setVisible(true);
+  const { dispatch } = useContext(store);
 
-  //   const { dispatch, state } = useContext(store);
   useEffect(() => {
-    // getAgents(dispatch);
-    //getCategory(dispatch)
+    getCategories(dispatch);
   }, []);
 
-  const handleOk = () => {
-    setModelText("Updating information");
-    setConfirmLoading(true);
-    // updateTicket(
-    //   dispatch,
-    //   ticket,
-    //   assignedAgent(state),
-    //   assignedPriority(state),
-    //   assignedStatus(state)
-    // );
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
+  const onCreate = (values) => {
     setVisible(false);
+    addCategory(dispatch, values);
+    openNotificationWithIcon(
+      "success",
+      `${values.name} added successfully!`,
+      `A new category has been added.`
+    );
   };
 
   return (
-    <>
-      <Button type="primary" onClick={() => showModal()}>
+    <div>
+      <Button
+        type="primary"
+        onClick={() => {
+          setVisible(true);
+        }}
+      >
         Add Category
       </Button>
-      <Modal
-        title={ModalText}
+      <CollectionCreateForm
         visible={visible}
-        onOk={() => handleOk()}
-        confirmLoading={confirmLoading}
-        onCancel={() => handleCancel()}
-      ></Modal>
-    </>
+        onCreate={onCreate}
+        onCancel={() => {
+          setVisible(false);
+        }}
+      />
+    </div>
   );
 }

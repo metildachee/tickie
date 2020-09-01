@@ -50,21 +50,6 @@ export const updateSort = async (dispatch, payload) => {
   }
 };
 
-// @desc Gets categories for ticket form
-export const getCategories = async (dispatch) => {
-  try {
-    let results = await axios.get(`${SERVER_URL}/category`);
-    console.log(results.data.categories);
-    dispatch({
-      type: "GET_CATEGORIES",
-      module: NAMESPACE,
-      payload: results.data.categories,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 // @desc Creates a new ticket
 export const createTicket = async (dispatch, ticket) => {
   const token = window.localStorage.getItem("token");
@@ -99,7 +84,6 @@ export const updateTicket = async (
         headers: { token: TOKEN },
       }
     );
-    console.log(newTicket);
     dispatch({
       type: "UPDATE_TICKETS",
       module: NAMESPACE,
@@ -149,7 +133,7 @@ export const gettingTickets = (state) => state.isGettingTickets;
 export const tickets = (state) => state.tickets;
 export const nilTickets = (state) =>
   !state.isGettingTickets && state.tickets.length === 0;
-export const categories = (state) => state.categories;
+// export const categories = (state) => state.categories;
 export const assignedAgent = (state) => state.agent;
 export const assignedPriority = (state) => state.priority;
 export const assignedStatus = (state) => state.status;
@@ -173,9 +157,6 @@ export function reducer(state, action) {
     }
     case "TICKETS_FAILED": {
       return { ...state, isGettingTickets: false };
-    }
-    case "GET_CATEGORIES": {
-      return { ...state, categories: action.payload };
     }
     case "ASSIGN_AGENT": {
       return { ...state, agent: action.payload };

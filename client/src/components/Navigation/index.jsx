@@ -1,14 +1,8 @@
-import React, { useContext } from "react";
-import { Breadcrumb, Typography } from "antd";
-import { logout } from "../../logic/authentication";
-import { store } from "../GlobalStoreProvider";
+import React from "react";
+import { Breadcrumb } from "antd";
 import ViewProfileButton from "./ViewProfileButton";
 
-const { Text } = Typography;
-
 export default function Navigation() {
-  const { dispatch } = useContext(store);
-
   return (
     <Breadcrumb
       style={{

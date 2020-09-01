@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Popover, Col, Row, Form, Input, Button, Radio, Select } from "antd";
-import { getCategories, categories, createTicket } from "../../logic/ticket";
+import { createTicket } from "../../logic/ticket";
+import { getCategories, categories } from "../../logic/category";
 import { store } from "../../components/GlobalStoreProvider";
 
 export default function AddTicketForm() {
