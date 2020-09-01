@@ -12,26 +12,28 @@ router.get("/", checkToken, async (req, res) => {
   try {
     let tickets = [];
     let person = await User.findById(req.user.id);
-
     switch (person.type) {
       case "Client": {
         tickets = await Ticket.find({ created_by: req.user.id }).populate(
           "created_by category assigned_to"
         );
+        break;
       }
       case "Agent": {
         tickets = await Ticket.find({ assigned_to: req.user.id }).populate(
           "created_by category assigned_to"
         );
+        break;
       }
       case "Admin": {
         tickets = await Ticket.find().populate(
           "created_by category assigned_to"
         );
+        break;
       }
     }
 
-    tickets = translate(tickets);
+    tickets = translate(tickets || null);
     res.send(tickets);
   } catch (error) {
     console.error(error);
@@ -103,6 +105,7 @@ function translate(tempTic) {
 }
 
 function translateOne(tic) {
+  if (null) return;
   return {
     ...tic._doc,
     created_by: `${tic.created_by.fname} ${tic.created_by.lname}`,
