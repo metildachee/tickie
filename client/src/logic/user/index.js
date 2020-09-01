@@ -70,6 +70,8 @@ export const getEmail = (state) => state.user.email;
 export const getUserID = (state) => state.user._id;
 export const getUserType = (state) => state.user.type;
 export const allUsers = (state) => state.users;
+export const getUserRole = (state) => state.user.role || "Unavailable";
+export const getUserDesc = (state) => state.user.description || "Unavailable";
 
 // Reducer
 export function reducer(state, action) {

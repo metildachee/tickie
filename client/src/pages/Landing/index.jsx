@@ -13,7 +13,10 @@ export default function Landing() {
     <div className="smooth-scroll-parent">
       <div className="container">
         <GithubIcon />
-        <section className="section center-xy">
+        <section
+          className="section center-xy"
+          style={{ backgroundColor: "aliceblue" }}
+        >
           <div>
             <div>
               <h1 className="tickie-title">Tickie</h1>

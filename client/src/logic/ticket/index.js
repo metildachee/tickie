@@ -133,7 +133,6 @@ export const gettingTickets = (state) => state.isGettingTickets;
 export const tickets = (state) => state.tickets;
 export const nilTickets = (state) =>
   !state.isGettingTickets && state.tickets.length === 0;
-// export const categories = (state) => state.categories;
 export const assignedAgent = (state) => state.agent;
 export const assignedPriority = (state) => state.priority;
 export const assignedStatus = (state) => state.status;
@@ -145,6 +144,8 @@ export const getOpenTickets = (state) =>
   state.tickets.filter((tic) => tic.status === "Open");
 export const getAssignedTickets = (state) =>
   state.tickets.filter((tic) => tic.status === "Assigned");
+export const getWIPTickets = (state) =>
+  state.tickets.filter((tic) => tic.status === "In-progress");
 
 // Reducer
 export function reducer(state, action) {

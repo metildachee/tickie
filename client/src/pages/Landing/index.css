@@ -31,7 +31,7 @@
   padding-bottom: 0px;
 }
 
-.section:nth-child(1),
+.section:first-child,
 .section:last-child {
   background-color: aliceblue;
 }

@@ -12,13 +12,18 @@ const TOKEN = window.localStorage.getItem("token");
 export const addOrganisation = async (dispatch, value) => {
   console.log(value);
   try {
-    await axios.post(
+    let org = await axios.post(
       `${SERVER_URL}/org`,
       { name: formatName(value.name), description: value.description },
       {
         headers: { token: TOKEN },
       }
     );
+    dispatch({
+      type: "ADD_ORGANISATIONS",
+      module: NAMESPACE,
+      payload: org.data,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -28,7 +33,6 @@ export const addOrganisation = async (dispatch, value) => {
 export const getOrganisations = async (dispatch) => {
   try {
     let results = await axios.get(`${SERVER_URL}/org`);
-    console.log(results.data);
     dispatch({
       type: "GET_ORGANISATIONS",
       module: NAMESPACE,
@@ -41,7 +45,6 @@ export const getOrganisations = async (dispatch) => {
 
 // Initial state
 export const INITIAL_STATE = {
-  organisation: "",
   organisations: [],
 };
 
@@ -63,7 +66,10 @@ export const organisations = (state) => state.organisations;
 export function reducer(state, action) {
   switch (action.type) {
     case "ADD_ORGANISATIONS": {
-      return { ...state, organisation: action.payload };
+      return {
+        ...state,
+        organisations: [...state.organisations, action.payload],
+      };
     }
     case "GET_ORGANISATIONS": {
       return { ...state, organisations: action.payload };

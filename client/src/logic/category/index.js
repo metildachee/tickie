@@ -12,8 +12,13 @@ const TOKEN = window.localStorage.getItem("token");
 export const addCategory = async (dispatch, value) => {
   value.name = value.name.toUpperCase();
   try {
-    await axios.post(`${SERVER_URL}/category`, value, {
+    let results = await axios.post(`${SERVER_URL}/category`, value, {
       headers: { token: TOKEN },
+    });
+    dispatch({
+      type: "ADD_CATEGORY",
+      module: NAMESPACE,
+      payload: results.data.category,
     });
   } catch (error) {
     console.error(error);
@@ -51,7 +56,7 @@ export const categories = (state) => state.categories;
 export function reducer(state, action) {
   switch (action.type) {
     case "ADD_CATEGORY": {
-      return { ...state, category: action.payload };
+      return { ...state, categories: [...state.categories, action.payload] };
     }
     case "GET_CATEGORIES": {
       return { ...state, categories: action.payload };

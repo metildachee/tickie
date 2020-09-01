@@ -6,9 +6,12 @@ import {
   getEmail,
   getUserID,
   getUserType,
+  getUserRole,
+  getUserDesc,
 } from "../../../logic/user";
 import KPITracker from "./KPITracker";
-import { isClient, logout } from "../../../logic/authentication";
+import SearchableTable from "./SearchableTable";
+import { logout, isAdmin } from "../../../logic/authentication";
 
 const DescriptionItem = ({ title, content }) => (
   <div className="site-description-item-profile-wrapper">
@@ -25,7 +28,9 @@ export default function Nav_ProfileButton() {
   const email = getEmail(state);
   const userID = getUserID(state);
   const userType = getUserType(state);
-  const client = isClient(state);
+  const admin = isAdmin(state);
+  const userRole = getUserRole(state);
+  const userDesc = getUserDesc(state);
 
   const showDrawer = (e) => {
     e.preventDefault();
@@ -56,9 +61,29 @@ export default function Nav_ProfileButton() {
           className="site-description-item-profile-p"
           style={{ marginBottom: 24 }}
         >
-          User Profile
+          Performance
         </p>
-        <p className="site-description-item-profile-p">Personal</p>
+        <Row>
+          <Col span={12}>
+            <KPITracker />
+          </Col>
+        </Row>
+        {admin && (
+          <>
+            <Divider />
+            <p className="site-description-item-profile-p">Information</p>
+            <Row>
+              <Col span={12}>
+                <SearchableTable type="organisations" />
+              </Col>
+              <Col span={12}>
+                <SearchableTable type="categories" />
+              </Col>
+            </Row>
+          </>
+        )}
+        <Divider />
+        <p className="site-description-item-profile-p">User Profile</p>
         <Row>
           <Col span={12}>
             <DescriptionItem title="User ID" content={userID} />
@@ -67,22 +92,10 @@ export default function Nav_ProfileButton() {
             <DescriptionItem title="Full Name" content={fullName} />
           </Col>
           <Col span={12}>
-            <DescriptionItem title="Type" content={userType} />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>
-            <DescriptionItem title="City" content="Singapore" />
+            <DescriptionItem title="Account Type" content={userType} />
           </Col>
           <Col span={12}>
-            <DescriptionItem title="Country" content="Singapore" />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>
-            {!client && (
-              <DescriptionItem title="Performance" content={<KPITracker />} />
-            )}
+            <DescriptionItem title="Email" content={email} />
           </Col>
         </Row>
 
@@ -90,33 +103,10 @@ export default function Nav_ProfileButton() {
         <p className="site-description-item-profile-p">Company</p>
         <Row>
           <Col span={12}>
-            <DescriptionItem title="Position" content="IT Support" />
+            <DescriptionItem title="Position" content={userRole} />
           </Col>
           <Col span={12}>
-            <DescriptionItem title="Responsibilities" content="IT Support" />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>
-            <DescriptionItem title="Department" content="XTech" />
-          </Col>
-          <Col span={12}>
-            <DescriptionItem title="Supervisor" content="Your boss" />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={24}>
-            <DescriptionItem
-              title="Skills"
-              content="C / C + +, data structures, software engineering, operating systems, computer networks, databases, compiler theory, computer architecture, Microcomputer Principle and Interface Technology, Computer English, Java, ASP, etc."
-            />
-          </Col>
-        </Row>
-        <Divider />
-        <p className="site-description-item-profile-p">Contacts</p>
-        <Row>
-          <Col span={12}>
-            <DescriptionItem title="Email" content={email} />
+            <DescriptionItem title="Responsibilities" content={userDesc} />
           </Col>
         </Row>
         <Divider />
