@@ -55,7 +55,6 @@ const formatName = (value) => {
 
 // Selectors
 export const organisationExists = (value, state) => {
-  console.log(value);
   return state.organisations.find((org) => org.name === formatName(value));
 };
 export const organisations = (state) => state.organisations;
