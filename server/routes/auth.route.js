@@ -11,9 +11,27 @@ const checkToken = require("../lib/config");
 */
 
 router.post("/register", async (req, res) => {
-  let { fname, lname, email, password, type } = req.body;
+  console.log(req.body);
+  let {
+    fname,
+    lname,
+    email,
+    password,
+    type,
+    role,
+    organisation,
+    description,
+  } = req.body;
   try {
-    let user = new User({ fname, lname, email, type });
+    let user = new User({
+      fname,
+      lname,
+      email,
+      type,
+      role,
+      organisation,
+      description,
+    });
     let hashedPassword = await bcrypt.hash(password, 10);
     user.password = hashedPassword;
     await user.save();
@@ -34,6 +52,7 @@ router.post("/register", async (req, res) => {
       }
     );
   } catch (error) {
+    console.error(error);
     res.status(500).json({ msg: "User not registered successfully!" });
   }
 });
@@ -95,6 +114,15 @@ router.get("/user", checkToken, async (req, res) => {
 router.get("/user/agents", checkToken, async (req, res) => {
   try {
     let users = await User.find({ type: "Agent" }, "-password");
+    res.status(200).json({ users });
+  } catch (error) {
+    res.status(500).json({ msg: "Oops! Something went wrong" });
+  }
+});
+
+router.get("/users", checkToken, async (req, res) => {
+  try {
+    let users = await User.find();
     res.status(200).json({ users });
   } catch (error) {
     res.status(500).json({ msg: "Oops! Something went wrong" });

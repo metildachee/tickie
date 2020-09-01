@@ -16,6 +16,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  description: {
+    type: String,
+  },
   organisation: { type: Schema.Types.ObjectId, ref: "Organisation" },
   role: { type: String },
   password: {
