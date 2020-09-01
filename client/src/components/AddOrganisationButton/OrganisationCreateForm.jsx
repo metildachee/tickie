@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Modal, Form, Input } from "antd";
-import { categoryExists } from "../../logic/category";
+import { organisationExists } from "../../logic/organisation";
 import { store } from "../GlobalStoreProvider";
 import AlertButton from "../AlertButton";
 
@@ -11,7 +11,7 @@ export default function CollectionCreateForm({ visible, onCreate, onCancel }) {
   return (
     <Modal
       visible={visible}
-      title="Add a new category"
+      title="Add a new organisation"
       okText="Add"
       cancelText="Cancel"
       onCancel={onCancel}
@@ -19,7 +19,7 @@ export default function CollectionCreateForm({ visible, onCreate, onCancel }) {
         form
           .validateFields()
           .then((values) => {
-            if (!categoryExists(values.name, state)) {
+            if (!organisationExists(values.name, state)) {
               form.resetFields();
               onCreate(values);
             } else {
@@ -39,14 +39,14 @@ export default function CollectionCreateForm({ visible, onCreate, onCancel }) {
           modifier: "public",
         }}
       >
-        <AlertButton visible={alertVisible} alertMsg="Category exists!" />
+        <AlertButton visible={alertVisible} alertMsg="Organisation exists!" />
         <Form.Item
           name="name"
           label="Title"
           rules={[
             {
               required: true,
-              message: "Please input the title of category!",
+              message: "Please input the name of organisation!",
             },
           ]}
         >

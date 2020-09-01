@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Button } from "antd";
 import CollectionCreateForm from "./OrganisationCreateForm";
-import { getCategories, addCategory } from "../../logic/category";
+import { getOrganisations, addOrganisation } from "../../logic/organisation";
 import openNotificationWithIcon from "../Notification";
 import { store } from "../GlobalStoreProvider";
 
@@ -10,12 +10,12 @@ export default function CollectionsPage() {
   const { dispatch } = useContext(store);
 
   useEffect(() => {
-    getCategories(dispatch);
+    getOrganisations(dispatch);
   }, []);
 
   const onCreate = (values) => {
     setVisible(false);
-    addCategory(dispatch, values);
+    addOrganisation(dispatch, values);
     openNotificationWithIcon(
       "success",
       `${values.name} added successfully!`,

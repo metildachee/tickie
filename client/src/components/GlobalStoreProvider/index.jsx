@@ -3,6 +3,7 @@ import * as authentication from "../../logic/authentication";
 import * as tickets from "../../logic/ticket";
 import * as users from "../../logic/user";
 import * as category from "../../logic/category";
+import * as organisation from "../../logic/organisation";
 import logger from "./logger";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   ...tickets.INITIAL_STATE,
   ...users.INITIAL_STATE,
   ...category.INITIAL_STATE,
+  ...organisation.INITIAL_STATE,
 };
 
 export const store = createContext(initialState);
@@ -28,6 +30,7 @@ const GlobalStoreProvider = ({ children }) => {
       [tickets.NAMESPACE]: tickets.reducer(state, action),
       [users.NAMESPACE]: users.reducer(state, action),
       [category.NAMESPACE]: category.reducer(state, action),
+      [organisation.NAMESPACE]: organisation.reducer(state, action),
     }[action.module];
     if (nextState === undefined) {
       return state;
