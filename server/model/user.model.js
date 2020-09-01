@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const Schema = mongoose.Schema;
+
 const userSchema = new mongoose.Schema({
   fname: {
     type: String,
@@ -14,6 +16,8 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  organisation: { type: Schema.Types.ObjectId, ref: "Organisation" },
+  role: { type: String },
   password: {
     type: String,
     required: true,

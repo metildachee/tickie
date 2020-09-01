@@ -47,7 +47,6 @@ router.get("/", checkToken, async (req, res) => {
     @access public
 */
 router.post("/create", checkToken, async (req, res) => {
-  console.log(req.body);
   try {
     let ticket = await Ticket.create({ ...req.body, created_by: req.user.id });
     res.send(ticket);
