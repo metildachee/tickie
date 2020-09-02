@@ -1,10 +1,11 @@
 import axios from "axios";
+import { getServerURL } from "../general";
 
 // Module name
 export const NAMESPACE = "tickets";
 
 // Constants
-const SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL;
+const SERVER_URL = getServerURL();
 const TOKEN = window.localStorage.getItem("token");
 
 // Actions
@@ -57,7 +58,7 @@ export const createTicket = async (dispatch, ticket) => {
     await axios.post(`${SERVER_URL}/ticket/create`, ticket, {
       headers: { token: token },
     });
-    window.location.href = "/";
+    window.location.href = "/tickie";
   } catch (error) {
     console.error(error);
   }

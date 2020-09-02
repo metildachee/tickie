@@ -1,10 +1,11 @@
 import axios from "axios";
+import { getServerURL } from "../general";
 
 // Module name
 export const NAMESPACE = "users";
 
 // Constants
-const SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL;
+const SERVER_URL = getServerURL();
 const TOKEN = window.localStorage.getItem("token");
 
 // Actions
@@ -40,9 +41,8 @@ export const getAllUsers = async (dispatch) => {
 
 export const addAccount = async (dispatch, user) => {
   try {
-    let results = await axios.post(`${SERVER_URL}/auth/register`, user);
+    await axios.post(`${SERVER_URL}/auth/register`, user);
     if (user.type === "Agent") {
-      console.log(results.data);
       getAgents(dispatch);
     }
   } catch (error) {

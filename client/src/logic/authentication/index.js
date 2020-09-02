@@ -1,8 +1,10 @@
 import { navigate } from "hookrouter";
+import { getServerURL } from "../general";
 import axios from "axios";
 
 // Module name
 export const NAMESPACE = "authentication";
+const SERVER_URL = getServerURL();
 
 // Constants
 const LOCALSTORAGE_KEY = "token";
@@ -20,10 +22,10 @@ export const logout = (dispatch) => {
 export const getUser = async (dispatch) => {
   const token = window.localStorage.getItem("token");
   try {
-    let results = await axios.get(
-      `${process.env.REACT_APP_DEV_SERVER_URL}/auth/user`,
-      { headers: { token: token } }
-    );
+    let results = await axios.get(`${SERVER_URL}/auth/user`, {
+      headers: { token: token },
+    });
+    console.log(results);
     dispatch({
       type: "SET_USER",
       module: NAMESPACE,

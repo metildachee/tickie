@@ -1,10 +1,11 @@
 import axios from "axios";
+import { getServerURL } from "../general";
 
 // Module name
 export const NAMESPACE = "category";
 
 // Constants
-const SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL;
+const SERVER_URL = getServerURL();
 const TOKEN = window.localStorage.getItem("token");
 
 // Actions
@@ -27,7 +28,6 @@ export const addCategory = async (dispatch, value) => {
 export const getCategories = async (dispatch) => {
   try {
     let results = await axios.get(`${SERVER_URL}/category`);
-    console.log(results.data.categories);
     dispatch({
       type: "GET_CATEGORIES",
       module: NAMESPACE,

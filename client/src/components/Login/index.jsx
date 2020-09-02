@@ -3,12 +3,14 @@ import axios from "axios";
 import { Form, Input, Button, Checkbox, Typography, Alert } from "antd";
 import { store } from "../../components/GlobalStoreProvider";
 import { login, checkToken } from "../../logic/authentication";
+import { getServerURL } from "../../logic/general";
 const { Text } = Typography;
 
 export default function Login() {
   const { dispatch } = useContext(store);
   const [visible, setVisible] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
+  const SERVER_URL = getServerURL();
 
   useEffect(() => {
     checkToken(dispatch);
@@ -16,10 +18,7 @@ export default function Login() {
 
   const onFinish = async (values) => {
     try {
-      let results = await axios.post(
-        `${process.env.REACT_APP_DEV_SERVER_URL}/auth/login`,
-        values
-      );
+      let results = await axios.post(`${SERVER_URL}/auth/login`, values);
       login(dispatch, results.data.token);
     } catch (error) {
       setVisible(true);

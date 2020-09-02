@@ -1,10 +1,11 @@
 import axios from "axios";
+import { getServerURL } from "../general";
 
 // Module name
 export const NAMESPACE = "organisation";
 
 // Constants
-const SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL;
+const SERVER_URL = getServerURL();
 const TOKEN = window.localStorage.getItem("token");
 
 // Actions
