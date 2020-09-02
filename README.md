@@ -1,5 +1,5 @@
 # What is Tickie?
-Tickie is a web based Ticket Support System built on the MERN stack with Antd framework.
+[Tickie](https://metildachee.github.io/tickie) is a web based Ticket Support System built on the MERN stack with Antd framework.
 
 # How does it work?
 ## Ticket lifecycles
@@ -57,18 +57,24 @@ The ticket has been archived.
 </table>
 
 # Technologies used
+## Prototyping
+[Mockups](https://www.figma.com/files/project/13983308/tickie)
+
 ## Front end
-### React & Redux
-React and Redux was used for the front-end since it would be cumbersome to coordinate the states should the project grow larger.
+### React.js
+React with redux was used for the front-end.
 ### Antd
 [Antd](https://ant.design/) was used for UI/UX.
 ## Backend 
-
+### Node.js, Express, MongoDB
+Fully self made REST API.
 ## Deployment
 ### Docker
-### AWS
-The server is deployed in AWS.
+The app was containerialized before implementation.
+### Heroku
+The server is deployed in Heroku.
 ### Git pages
 The client is deployed in Git pages.
-
+## References
+[Freepik](https://www.freepik.com/)
 
