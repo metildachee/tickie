@@ -97,7 +97,7 @@ export default function SearchableTable({ type }) {
 
   const columns = [
     {
-      title: type,
+      title: type.charAt(0).toUpperCase() + type.substring(1),
       dataIndex: "name",
       key: "name",
       ...getColumnSearchProps("name"),

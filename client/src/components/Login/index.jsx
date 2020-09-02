@@ -42,7 +42,16 @@ export default function Login() {
       }}
     >
       <div>
-        <Text style={{ fontSize: "40px", color: "#11202e" }}>
+        <Text
+          style={{
+            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+            fontWeight: "700",
+            color: "#11202e",
+            fontSize: "40px",
+            marginBottom: "-10px",
+            paddingBottom: "0px",
+          }}
+        >
           Welcome back!
         </Text>
 

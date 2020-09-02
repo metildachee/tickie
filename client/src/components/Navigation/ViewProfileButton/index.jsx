@@ -64,7 +64,7 @@ export default function Nav_ProfileButton() {
           Performance
         </p>
         <Row>
-          <Col span={12}>
+          <Col span={24}>
             <KPITracker />
           </Col>
         </Row>

@@ -8,9 +8,8 @@ const SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL;
 const TOKEN = window.localStorage.getItem("token");
 
 // Actions
-
 export const addCategory = async (dispatch, value) => {
-  value.name = value.name.toUpperCase();
+  value.name = value.name.charAt(0).toUpperCase() + value.name.substring(1);
   try {
     let results = await axios.post(`${SERVER_URL}/category`, value, {
       headers: { token: TOKEN },
@@ -25,7 +24,6 @@ export const addCategory = async (dispatch, value) => {
   }
 };
 
-// @desc Gets categories for ticket form
 export const getCategories = async (dispatch) => {
   try {
     let results = await axios.get(`${SERVER_URL}/category`);
@@ -42,7 +40,6 @@ export const getCategories = async (dispatch) => {
 
 // Initial state
 export const INITIAL_STATE = {
-  category: "",
   categories: [],
 };
 

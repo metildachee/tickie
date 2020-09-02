@@ -8,6 +8,7 @@ import {
   getWIPTickets,
 } from "../../../logic/ticket";
 import { store } from "../../GlobalStoreProvider";
+import { isAgent } from "../../../logic/authentication";
 
 export default function KPITracker() {
   const { state } = useContext(store);
@@ -15,20 +16,23 @@ export default function KPITracker() {
   const noOfOpenTickets = getOpenTickets(state).length;
   const noOfAssignedTickets = getAssignedTickets(state).length;
   const noOfInprogressTickets = getWIPTickets(state).length;
+  const agent = isAgent(state);
 
   return (
     <div>
       <Row>
-        <Col span={12}>
-          <Statistic title="Open Tickets" value={noOfOpenTickets} />
-        </Col>
-        <Col span={12}>
+        {!agent && (
+          <Col span={6}>
+            <Statistic title="Open Tickets" value={noOfOpenTickets} />
+          </Col>
+        )}
+        <Col span={6}>
           <Statistic title="Assigned" value={noOfAssignedTickets} />
         </Col>
-        <Col span={12}>
+        <Col span={6}>
           <Statistic title="In-Progress" value={noOfInprogressTickets} />
         </Col>
-        <Col span={12}>
+        <Col span={6}>
           <Statistic
             title="Closed Tickets"
             value={noOfClosedTickets}

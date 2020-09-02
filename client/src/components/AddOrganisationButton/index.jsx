@@ -24,7 +24,7 @@ export default function CollectionsPage() {
   };
 
   return (
-    <div>
+    <div style={{ marginRight: "20px " }}>
       <Button
         type="primary"
         onClick={() => {
