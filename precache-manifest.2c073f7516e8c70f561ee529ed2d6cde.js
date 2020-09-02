@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cdbb06809e54dcf0b5cf170a84dbb605",
+    "revision": "ec818ef436a370c2e594bc9318d0f7b8",
     "url": "/tickie/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tickie/static/css/2.847e01e0.chunk.css"
   },
   {
-    "revision": "9267e4022f24971010e1",
+    "revision": "60aabf26403d134e5cfd",
     "url": "/tickie/static/css/main.27e02447.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tickie/static/js/2.adc180d8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9267e4022f24971010e1",
-    "url": "/tickie/static/js/main.c661247a.chunk.js"
+    "revision": "60aabf26403d134e5cfd",
+    "url": "/tickie/static/js/main.50d474e9.chunk.js"
   },
   {
     "revision": "6c2f7c9d96b8321e7c4d",
