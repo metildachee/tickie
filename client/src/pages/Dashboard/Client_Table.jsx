@@ -146,7 +146,10 @@ export default function SortableTable() {
 
   return (
     <Table
-      pagination={false}
+      pagination={{
+        position: ["bottomCenter"],
+        pageSize: 5,
+      }}
       dataSource={dataSource}
       columns={columns}
       rowKey="index"

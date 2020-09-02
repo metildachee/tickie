@@ -33,7 +33,7 @@ router.get("/", checkToken, async (req, res) => {
       }
     }
 
-    tickets = translate(tickets || null);
+    tickets = translate(tickets);
     res.send(tickets);
   } catch (error) {
     console.error(error);
@@ -105,7 +105,8 @@ function translate(tempTic) {
 }
 
 function translateOne(tic) {
-  if (null) return;
+  console.log(tic);
+  if (tic === []) return;
   return {
     ...tic._doc,
     created_by: `${tic.created_by.fname} ${tic.created_by.lname}`,

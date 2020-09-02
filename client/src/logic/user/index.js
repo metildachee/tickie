@@ -41,12 +41,10 @@ export const getAllUsers = async (dispatch) => {
 export const addAccount = async (dispatch, user) => {
   try {
     let results = await axios.post(`${SERVER_URL}/auth/register`, user);
-    console.log(results);
-    dispatch({
-      type: "ADD_ACCOUNT",
-      module: NAMESPACE,
-      payload: results.data.user,
-    });
+    if (user.type === "Agent") {
+      console.log(results.data);
+      getAgents(dispatch);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -81,6 +79,9 @@ export function reducer(state, action) {
     }
     case "ALL_USERS": {
       return { ...state, users: action.payload };
+    }
+    case "ADD_AGENT_ACCOUNT": {
+      return { ...state, agents: [...state.agents, action.payload] };
     }
     default:
       return state;

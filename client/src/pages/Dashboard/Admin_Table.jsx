@@ -76,6 +76,7 @@ export default function AdminDashboard() {
             .includes(value.toLowerCase())
         : "",
     onFilterDropdownVisibleChange: (visible) => {
+      console.log(searchInput);
       if (visible) {
         setTimeout(() => searchInput.select(), 100);
       }
@@ -256,6 +257,10 @@ export default function AdminDashboard() {
 
   return (
     <Table
+      pagination={{
+        position: ["bottomCenter"],
+        pageSize: 2,
+      }}
       style={{ margin: "0 auto", width: "90vw" }}
       columns={columns}
       dataSource={data}

@@ -122,7 +122,6 @@ export const assignStatus = (dispatch, status) => {
 export const INITIAL_STATE = {
   isGettingTickets: false,
   tickets: [],
-  categories: [],
   agent: "",
   priority: "",
   status: "",
