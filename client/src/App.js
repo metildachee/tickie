@@ -30,11 +30,11 @@ function App() {
             {isLogin ? <Redirect to="/" /> : <Landing />}
           </Route>
 
-          <Route path="/" exact>
+          <Route path="/tickie/" exact>
             {isLogin ? <Dashboard /> : <Landing />}
           </Route>
 
-          <Route path="/create" exact>
+          <Route path="/tickie/create" exact>
             {isLogin && client ? <AddTicketForm /> : <NoEntry />}
           </Route>
         </Switch>
