@@ -13,7 +13,7 @@ export default function SearchableTable({ type }) {
 
   useEffect(() => {
     setData(getType(state, type));
-  }, []);
+  }, [state.organisations, state.categories]);
 
   let searchInput;
   const getColumnSearchProps = (dataIndex) => ({
@@ -80,7 +80,7 @@ export default function SearchableTable({ type }) {
           textToHighlight={text ? text.toString() : ""}
         />
       ) : (
-        text
+        <span style={{ margin: "-10px" }}>{text}</span>
       ),
   });
 
@@ -105,15 +105,17 @@ export default function SearchableTable({ type }) {
   ];
 
   return (
-    <Table
-      style={{ margin: "0 auto" }}
-      columns={columns}
-      dataSource={data}
-      pagination={{
-        current: 1,
-        pageSize: 3,
-      }}
-      size="small"
-    />
+    <>
+      <Table
+        style={{ margin: "0 auto" }}
+        columns={columns}
+        dataSource={data}
+        pagination={{
+          size: "small",
+          position: ["bottomCenter"],
+          pageSize: 3,
+        }}
+      />
+    </>
   );
 }
