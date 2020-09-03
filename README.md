@@ -1,4 +1,5 @@
-Ticket systems suck, they don't have to.
+
+<h1><img src="./coupon.png"> Tickie - Ticket support systems suck, they don't have to.</h1>
 
 - [What is Tickie?](#what-is-tickie)
 - [How does it work?](#how-does-it-work)
@@ -30,21 +31,16 @@ Ticket systems suck, they don't have to.
 # How does it work?
 ## Ticket lifecycles
 A ticket's life cycle evolves as follows:
-1. Open
-
-The ticket initiated by the client.
-2. Assigned
-
-The ticket has been delegated by an administrator to an agent.
-3. In-progress
-
-The agent is working on the ticket.
-4. Resolved
-
-The ticket has been resolved.
-5. Archived
-
-The ticket has been archived.
+- Open
+  - The ticket initiated by the client.
+- Assigned
+  - The ticket has been delegated by an administrator to an agent.
+- In-progress
+  - The agent is working on the ticket.
+- Resolved
+  - The ticket has been resolved.
+- Archived
+  - The ticket has been archived.
 
 ## User access controls
 <table>
