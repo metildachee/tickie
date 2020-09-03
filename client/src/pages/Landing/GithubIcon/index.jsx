@@ -19,7 +19,7 @@ export default function index() {
 const styles = {
   position: "absolute",
   fontSize: "30px",
-  top: "10px",
+  top: "30px",
   right: "30px",
   zIndex: "1",
 };

@@ -6,10 +6,10 @@ export const NAMESPACE = "category";
 
 // Constants
 const SERVER_URL = getServerURL();
-const TOKEN = window.localStorage.getItem("token");
 
 // Actions
 export const addCategory = async (dispatch, value) => {
+  const TOKEN = window.localStorage.getItem("token");
   value.name = value.name.charAt(0).toUpperCase() + value.name.substring(1);
   try {
     let results = await axios.post(`${SERVER_URL}/category`, value, {
@@ -45,7 +45,7 @@ export const INITIAL_STATE = {
 
 // Selectors
 export const categoryExists = (value, state) => {
-  return state.categories.find((cat) => cat.name === value.toUpperCase());
+  return state.categories.find((cat) => cat.name.toUpperCase() === value.toUpperCase());
 };
 export const categories = (state) => state.categories;
 

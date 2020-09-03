@@ -4,6 +4,7 @@ import { Form, Input, Button, Checkbox, Typography, Alert } from "antd";
 import { store } from "../../components/GlobalStoreProvider";
 import { login, checkToken } from "../../logic/authentication";
 import { getServerURL } from "../../logic/general";
+import './index.css'
 const { Text } = Typography;
 
 export default function Login() {
@@ -55,7 +56,7 @@ export default function Login() {
         </Text>
 
         <Form
-          style={{ width: "50vw" }}
+          style={{ width: "50vw", margin: "0 auto" }}
           name="basic"
           initialValues={{
             remember: true,
@@ -104,15 +105,28 @@ export default function Login() {
           </Form.Item>
 
           <Form.Item style={{ marginTop: "0px" }}>
+            <div>
             <Button
+              id="login"
               type="primary"
               shape="round"
               size="large"
               htmlType="submit"
-              ghost
             >
               Login Tickie
             </Button>
+            <Button
+              id="get-account"
+              type="primary"
+              shape="round"
+              size="large"
+              onClick={() => { window.open( 
+                "https://github.com/metildachee/tickie.git", "_blank");}}
+              ghost
+            >
+              Get account
+            </Button>
+            </div>
           </Form.Item>
         </Form>
       </div>

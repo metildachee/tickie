@@ -1,12 +1,12 @@
 import React from "react";
 import Login from "../../components/Login";
-import KPI from "./kpi.jpg";
 import Productivity from "./productivity.jpg";
 import GithubIcon from "./GithubIcon";
+import { CheckCircleTwoTone } from "@ant-design/icons";
 import "./index.css";
 
-import { Typography, Button, Row, Col } from "antd";
-const { Text } = Typography;
+import { Typography, Button, Row, Space } from "antd";
+const { Text, Title } = Typography;
 
 export default function Landing() {
   return (
@@ -39,29 +39,53 @@ export default function Landing() {
           </div>
         </section>
         <section id="learn-more" className="section center-xy">
-          <Row>
-            <Col className="center-xy" span={12}>
-              <div>
-                <Row>
-                  <img src={Productivity} alt="Productivity" />
-                </Row>
-                <Row>
-                  <Text style={{ fontSize: "20px" }}>
-                    Add comments, view threads to see <Text mark>exactly</Text>{" "}
-                    what is happening.
-                  </Text>
-                </Row>
-              </div>
-            </Col>
-            <Col className="center-xy" span={12}>
-              <div>
-                <Text style={{ fontSize: "20px" }}>
-                  Manage KPI and performance <Text mark>at ease</Text>
+          <div>
+          <Row className="grid">
+            <div className="center-xy">
+              <img src={Productivity} alt="Productivity" />
+            </div>
+            <div>
+              <Space direction="vertical">
+                <Title level={4}>
+                  {" "}
+                  <CheckCircleTwoTone style={{ paddingRight: "5px" }} />
+                  User access control
+                </Title>
+                <Text>
+                  Customise who to do what to ensure the system performs <Text mark>exactly</Text> how it's supposed to.
                 </Text>
-                <img src={KPI} alt="KPI" />
-              </div>
-            </Col>
+                <Title level={4}>
+                  {" "}
+                  <CheckCircleTwoTone style={{ paddingRight: "5px" }} />
+                  Easy implementation
+                </Title>
+                <Text>
+                  Tickie is web based and can be configured for online usage so you can <Text mark>get up and running in seconds</Text>.
+                  Should you desire, Tickie is also available as an offline solution.
+                </Text>
+                <Title level={4}>
+                  {" "}
+                  <CheckCircleTwoTone style={{ paddingRight: "5px" }} />
+                  Simple interface
+                </Title>
+                <Text>
+                  Long begone clunky and chunky interfaces. Tickie's <Text mark>smooth and easy interface</Text> allows any user to easily navigate the system. We can betcha no training is required.
+                </Text>
+                <Title level={4}>
+                  {" "}
+                  <CheckCircleTwoTone style={{ paddingRight: "5px" }} />
+                  Data friendly
+                </Title>
+                <Text>
+                  Tickie is <Text mark>designed</Text> to handle large amounts of data. Searching and sorting is an integral part of the Tickie Support System experience.
+                </Text>
+              </Space>
+            </div>
           </Row>
+          <Button type="primary" size="large" shape="round" id="get-started">
+                <a href="#login">Get started</a>
+          </Button>
+          </div>
         </section>
         <section id="login" className="section center-xy">
           <Login />
