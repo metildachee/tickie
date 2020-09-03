@@ -109,7 +109,7 @@ export default function SortableTable() {
   const { dispatch, state } = useContext(store);
 
   useEffect(() => {
-    getTickets(dispatch)
+    getTickets(dispatch);
   }, []);
 
   const dataSource = tickets(state);

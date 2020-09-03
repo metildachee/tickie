@@ -45,7 +45,9 @@ export const INITIAL_STATE = {
 
 // Selectors
 export const categoryExists = (value, state) => {
-  return state.categories.find((cat) => cat.name.toUpperCase() === value.toUpperCase());
+  return state.categories.find(
+    (cat) => cat.name.toUpperCase() === value.toUpperCase()
+  );
 };
 export const categories = (state) => state.categories;
 
