@@ -16,7 +16,7 @@ export const logout = (dispatch) => {
     type: "LOGOUT",
     module: NAMESPACE,
   });
-  navigate("login");
+  navigate("/tickie");
 };
 
 export const getUser = async (dispatch) => {
@@ -25,7 +25,6 @@ export const getUser = async (dispatch) => {
     let results = await axios.get(`${SERVER_URL}/auth/user`, {
       headers: { token: token },
     });
-    console.log(results);
     dispatch({
       type: "SET_USER",
       module: NAMESPACE,
@@ -44,7 +43,7 @@ export const login = (dispatch, token) => {
     module: NAMESPACE,
   });
   getUser(dispatch);
-  navigate("/");
+  navigate("/tickie");
 };
 
 export const checkToken = (dispatch) => {
