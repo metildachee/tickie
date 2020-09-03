@@ -1,5 +1,5 @@
 
-<h1><img src="./coupon.png"> Tickie - Ticket support systems suck, they don't have to.</h1>
+<h1><img src="./snaps/coupon.png"> Tickie - Ticket support systems suck, they don't have to.</h1>
 
 - [What is Tickie?](#what-is-tickie)
 - [How does it work?](#how-does-it-work)
@@ -21,9 +21,6 @@
   * [Potential features](#potential-features)
   * [What could have been done better better?](#what-could-have-been-done-better-better)
   * [References](#references)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 # What is Tickie?
 [Tickie](https://metildachee.github.io/tickie) is a web based Ticket Support System built on the MERN stack with Antd framework.
@@ -86,6 +83,19 @@ A ticket's life cycle evolves as follows:
 # Technologies used
 ## Prototyping
 [Mockups](https://www.figma.com/files/project/13983308/tickie)
+
+<img src="./snaps/index.png">
+<img src="./snaps/second.png">
+<img src="./snaps/third.png">
+
+Mobile friendly sliders
+
+<img src="./snaps/sample-dashboard.png">
+Admin dashboard with statuses of tickets and assigned agents.
+
+<img src="./snaps/side-profile.png">
+KPI board for performance review, simple and easy.
+
 ## Front end
 ### React.js
 React with redux was used for the front-end.
