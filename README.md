@@ -7,11 +7,14 @@
   * [User access controls](#user-access-controls)
 - [Technologies used](#technologies-used)
   * [Prototyping](#prototyping)
-  * [Front end](#front-end)
-    + [React.js](#reactjs)
-    + [Antd](#antd)
-  * [Backend](#backend)
-    + [Node.js, Express, MongoDB](#nodejs--express--mongodb)
+  * [Development](#development)
+    + [Front end](#front-end)
+      - [React.js](#reactjs)
+      - [Antd](#antd)
+    + [Backend](#backend)
+      - [Node.js, Express, MongoDB](#nodejs--express--mongodb)
+    + [Tools](#tools)
+      - [Prettier](#prettier)
   * [Deployment](#deployment)
     + [Docker](#docker)
     + [Heroku](#heroku)
@@ -84,26 +87,29 @@ A ticket's life cycle evolves as follows:
 ## Prototyping
 [Mockups](https://www.figma.com/files/project/13983308/tickie)
 
-<img src="./snaps/index.png">
-<img src="./snaps/second.png">
-<img src="./snaps/third.png">
-
-Mobile friendly sliders
+<img src="./snaps/home.png">
+Homepage
 
 <img src="./snaps/sample-dashboard.png">
+
 Admin dashboard with statuses of tickets and assigned agents.
 
 <img src="./snaps/side-profile.png">
+
 KPI board for performance review, simple and easy.
 
-## Front end
-### React.js
+## Development
+### Front end
+#### React.js
 React with redux was used for the front-end.
-### Antd
+#### Antd
 [Antd](https://ant.design/) was used for UI/UX.
-## Backend 
-### Node.js, Express, MongoDB
+### Backend 
+#### Node.js, Express, MongoDB
 Fully self made REST [API](http://tickie-server.herokuapp.com).
+### Tools
+#### Prettier
+Using prettier script made formatting so much easier! I used a custom script `npm run fmt` and `.prettierignore` to ensure `build` files aren't formatted.
 ## Deployment
 ### Docker
 The app was containerialized before implementation.
