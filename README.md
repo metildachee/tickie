@@ -1,3 +1,29 @@
+Ticket systems suck, they don't have to.
+
+- [What is Tickie?](#what-is-tickie)
+- [How does it work?](#how-does-it-work)
+  * [Ticket lifecycles](#ticket-lifecycles)
+  * [User access controls](#user-access-controls)
+- [Technologies used](#technologies-used)
+  * [Prototyping](#prototyping)
+  * [Front end](#front-end)
+    + [React.js](#reactjs)
+    + [Antd](#antd)
+  * [Backend](#backend)
+    + [Node.js, Express, MongoDB](#nodejs--express--mongodb)
+  * [Deployment](#deployment)
+    + [Docker](#docker)
+    + [Heroku](#heroku)
+    + [Git pages](#git-pages)
+    + [Test account](#test-account)
+- [What could have been done better?](#what-could-have-been-done-better)
+  * [Potential features](#potential-features)
+  * [What could have been done better better?](#what-could-have-been-done-better-better)
+  * [References](#references)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # What is Tickie?
 [Tickie](https://metildachee.github.io/tickie) is a web based Ticket Support System built on the MERN stack with Antd framework.
 
@@ -5,14 +31,19 @@
 ## Ticket lifecycles
 A ticket's life cycle evolves as follows:
 1. Open
+
 The ticket initiated by the client.
 2. Assigned
+
 The ticket has been delegated by an administrator to an agent.
 3. In-progress
+
 The agent is working on the ticket.
 4. Resolved
+
 The ticket has been resolved.
 5. Archived
+
 The ticket has been archived.
 
 ## User access controls
@@ -59,7 +90,6 @@ The ticket has been archived.
 # Technologies used
 ## Prototyping
 [Mockups](https://www.figma.com/files/project/13983308/tickie)
-
 ## Front end
 ### React.js
 React with redux was used for the front-end.
@@ -75,6 +105,24 @@ The app was containerialized before implementation.
 The server is deployed in Heroku.
 ### Git pages
 The client is deployed in Git pages.
+### Test account
+email: admin@gmail.com
+pwd: 123456
+
+# What could have been done better?
+## Potential features
+1. Logging
+2. Comments
+3. Allow updates, deletion
+4. Uploading of images
+5. Notification system
+6. Mailer
+
+## What could have been done better better?
+1. Hosting on DO/AWS
+2. TypeScript server-side
+3. Writing test cases
+
 ## References
 [Freepik](https://www.freepik.com/)
 
