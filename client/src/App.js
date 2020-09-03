@@ -26,10 +26,6 @@ function App() {
       <Router>
         {isLogin && <Navigation />}
         <Switch>
-          <Route path="/login" exact>
-            {isLogin ? <Redirect to="/" /> : <Landing />}
-          </Route>
-
           <Route path="/tickie/" exact>
             {isLogin ? <Dashboard /> : <Landing />}
           </Route>

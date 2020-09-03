@@ -67,7 +67,7 @@ React with redux was used for the front-end.
 [Antd](https://ant.design/) was used for UI/UX.
 ## Backend 
 ### Node.js, Express, MongoDB
-Fully self made REST API.
+Fully self made REST [API](http://tickie-server.herokuapp.com).
 ## Deployment
 ### Docker
 The app was containerialized before implementation.

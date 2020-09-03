@@ -3,5 +3,5 @@ export const getType = (state, type) => {
 };
 
 export const getServerURL = () => {
-  return "http://tickie-server.herokuapp.com/api";
+  return "https://tickie-server.herokuapp.com/api";
 };
