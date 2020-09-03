@@ -6,10 +6,10 @@ export const NAMESPACE = "tickets";
 
 // Constants
 const SERVER_URL = getServerURL();
-const TOKEN = window.localStorage.getItem("token");
 
 // Actions
 export const getTickets = async (dispatch) => {
+  const TOKEN = window.localStorage.getItem("token");
   dispatch({
     type: "GETTING_TICKETS",
     module: NAMESPACE,
