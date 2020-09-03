@@ -1,5 +1,5 @@
 
-<h1><img src="./snaps/coupon.png"> Tickie - Ticket support systems suck, they don't have to.</h1>
+<h1><img src="./snaps/coupon.png"> Tickie - Ticket support systems suck, they don't have to</h1>
 
 - [What is Tickie?](#what-is-tickie)
 - [How does it work?](#how-does-it-work)
